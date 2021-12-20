@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact name="ProjektPO">
+    <output-path>$PROJECT_DIR$/out/artifacts/ProjektPO</output-path>
+    <root id="root" />
+  </artifact>
+</component>
