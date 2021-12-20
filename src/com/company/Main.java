@@ -203,6 +203,14 @@ public class Main {
                 }
             }
         });
+        canHavePocketItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(canHavePocketItem.isSelected()){
+                    JOptionPane.showMessageDialog(null,"Your character can have pocket item!");
+                }
+            }
+        });
         //redHearts.setText(String.valueOf(super.redHeartCounter));
     }
     public static void main(String[] args) {
