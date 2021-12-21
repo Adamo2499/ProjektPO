@@ -16,7 +16,6 @@ public class Main {
         characterCreator.setLayout(null);
         characterCreator.setVisible(true);
         characterCreator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        characterCreator.setAlwaysOnTop(true);
 
         //create form elements
         JLabel characterNameLabel = new JLabel("Character's name: ");
@@ -42,7 +41,7 @@ public class Main {
            // items
         JLabel startingActiveItemLabel = new JLabel("Starting active item: ");
         JComboBox startingActiveItem = new JComboBox();
-        startingActiveItem.addItem("Random");
+        startingActiveItem.addItem("Active item");
         JButton randomActiveItem = new JButton("Random");
         JLabel startingPassiveItemsLabel = new JLabel("Starting passive items: ");
         JComboBox startingPassiveItem1 = new JComboBox();
@@ -194,7 +193,9 @@ public class Main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(noRedHealth.isSelected()){
+                    redHearts.setText("0");
                     redHearts.setEditable(false);
+                    rottenHearts.setText("0");
                     rottenHearts.setEditable(false);
                 }
                 else {
