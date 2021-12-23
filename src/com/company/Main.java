@@ -12,11 +12,10 @@ public class Main {
     public static void createGUI() {
         // create a frame
         JFrame characterCreator = new JFrame("Isaac Character Creator");
-        characterCreator.setSize(900, 600);
+        characterCreator.setSize(1024, 768);
         characterCreator.setLayout(null);
         characterCreator.setVisible(true);
         characterCreator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         //create form elements
         JLabel characterNameLabel = new JLabel("Character's name: ");
         TextField characterName = new TextField("Who am I?");
@@ -24,7 +23,7 @@ public class Main {
         JRadioButton category1 = new JRadioButton("Normal", true);
         JRadioButton category2 = new JRadioButton("Tainted");
         JRadioButton category3 = new JRadioButton("Stranger Role");
-            //health
+        //health
         JLabel startingHealthLabel = new JLabel("Starting health:");
         JLabel redHeartIcon = new JLabel(new ImageIcon("src/icons/hearts/HUD_heart_red_full.png"));
         JLabel soulHeartIcon = new JLabel(new ImageIcon("src/icons/hearts/HUD_heart_soul_full.png"));
@@ -38,7 +37,7 @@ public class Main {
         TextField boneHearts = new TextField("1");
         TextField rottenHearts = new TextField("1");
         TextField brokenHearts = new TextField("0");
-           // items
+        // items
         JLabel startingActiveItemLabel = new JLabel("Starting active item: ");
         JComboBox startingActiveItem = new JComboBox();
         startingActiveItem.addItem("Active item");
@@ -48,7 +47,7 @@ public class Main {
         JComboBox startingPassiveItem2 = new JComboBox();
         JComboBox startingPassiveItem3 = new JComboBox();
         JButton morePassiveItems = new JButton("Add passive item");
-           //trinkets and pickups
+        //trinkets and pickups
         JLabel startingPickups = new JLabel("Starting pickups:");
         JLabel coinIcon = new JLabel(new ImageIcon("src/icons/pickups/Penny.png"));
         TextField coins = new TextField("0");
@@ -76,8 +75,11 @@ public class Main {
         JLabel tearsIcon = new JLabel(new ImageIcon("src/icons/stats/tears.png"));
         TextField tears = new TextField("0.00");
         //interfaces
+        JLabel specialAbilities = new JLabel("Special abilities:");
         JCheckBox noRedHealth = new JCheckBox("Can't have red health");
         JCheckBox canHavePocketItem = new JCheckBox("Can have pocket item");
+        //
+
         //set frame icon
         /*
         ImageIcon coinIcon2 = new ImageIcon("src/icons/pickups/Penny.png");
@@ -106,8 +108,13 @@ public class Main {
         brokenHearts.setBounds(50,275,50,20);
         startingActiveItemLabel.setBounds(150,85,125,30);
         startingActiveItem.setBounds(150,120,100,20);
-        //startingPickups.setBounds(15,390,100,30);
-        //pickupLabel.setBounds(15,370,150,50);
+        startingPassiveItemsLabel.setBounds(150,150,150,30);
+        startingPassiveItem1.setBounds(150,180,100,20);
+        startingPassiveItem2.setBounds(150,210,100,20);
+        startingPassiveItem3.setBounds(150,240,100,20);
+
+        noRedHealth.setBounds(150,270,150,25);
+        canHavePocketItem.setBounds(150,285,150,50);
         startingPickups.setBounds(15,300,100,30);
         coinIcon.setBounds(15,330,30,30);
         coins.setBounds(50,335,50,20);
@@ -115,9 +122,21 @@ public class Main {
         bombs.setBounds(50,365,50,20);
         keyIcon.setBounds(15,390,30,30);
         key.setBounds(50,395,50,20);
-        noRedHealth.setBounds(150,210,150,25);
-        canHavePocketItem.setBounds(150,235,150,50);
         //randomTrinket.setBounds(200,100,150,25);
+        startingStatsLabel.setBounds(15,420,100,30);
+        speedIcon.setBounds(15,450,30,30);
+        moveSpeed.setBounds(50,455,50,20);
+        tearsIcon.setBounds(15,480,30,30);
+        tears.setBounds(50,485,50,20);
+        damageIcon.setBounds(15,510,30,30);
+        damage.setBounds(50,515,50,20);
+        rangeIcon.setBounds(15,540,30,30);
+        range.setBounds(50,545,50,20);
+        shotSpeedIcon.setBounds(15,570,30,30);
+        shotSpeed.setBounds(50,575,50,20);
+        luckIcon.setBounds(15,600,30,30);
+        luck.setBounds(50,605,50,20);
+        createCharacterButton.setBounds(25,635,200,30);
 
 
         //add elements to form
@@ -157,6 +176,7 @@ public class Main {
         characterCreator.add(bombs);
         characterCreator.add(keyIcon);
         characterCreator.add(key);
+        characterCreator.add(startingStatsLabel);
         characterCreator.add(damage);
         characterCreator.add(damageIcon);
         characterCreator.add(tears);
@@ -167,9 +187,13 @@ public class Main {
         characterCreator.add(shotSpeedIcon);
         characterCreator.add(moveSpeed);
         characterCreator.add(speedIcon);
+        characterCreator.add(luckIcon);
+        characterCreator.add(luck);
         characterCreator.add(randomPickup);
+        characterCreator.add(specialAbilities);
         characterCreator.add(noRedHealth);
         characterCreator.add(canHavePocketItem);
+        characterCreator.add(createCharacterButton);
 
 
         //add elements to groups
