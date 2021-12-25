@@ -1,5 +1,3 @@
-A Pony
-Abyss
 Alabaster Box
 Anarchist Cookbook
 Anima Sola
@@ -19,6 +17,148 @@ Box of Friends
 Box of Spiders
 Breath of Life
 Brown Nugget
+Butter Bean
 Clear Rune
 Clicker
 Compost
+Converter
+Coupon
+Crack the Sky
+Crooked Penny
+Crystal Ball
+D Infinity
+D1
+D10
+D100
+D12
+D20
+D4
+D7
+D8
+Dad's Key
+Damocles
+Dark Arts
+Dataminer
+Dead Sea Scrolls
+Decap Attack	
+Death Certificate
+Deck of Cards	
+Delirious	
+Diplopia	
+Doctor's Remote	
+Dull Razor	
+Eden's Soul	
+Eraser	
+Esau Jr.	
+Eternal D6	
+Everything Jar	
+Flip	
+Flush!	
+Forget Me Now	
+Fortune Cookie	
+Free Lemonade	
+Friend Finder	
+Friendly Ball	
+Gello	
+Genesis	
+Glass Cannon	
+Glowing Hour Glass	
+Golden Razor	
+Guppy's Head	
+Guppy's Paw	
+Head of Krampus	
+How to Jump	
+Isaac's Tears	
+IV Bag	
+Jar of Flies	
+Jar of Wisps	
+Kamikaze!	
+Keeper's Box	
+Kidney Bean	
+Larynx	
+Lemegeton	
+Lemon Mishap	
+Magic Fingers	
+Magic Skin	
+Mama Mega!	
+Meat Cleaver	
+Mega Bean	
+Mega Blast	
+Mega Mush	
+Metronome	
+Mine Crafter	
+Mom's Bottle of Pills	
+Mom's Box	
+Mom's Bra	
+Mom's Bracelet	
+Mom's Pad	
+Monster Manual
+Monstro's Tooth	
+Moving Box	
+Mr. Boom	
+Mr. ME!	
+My Little Unicorn	
+Mystery Gift	
+Notched Axe	
+Pandora's Box	
+Pause	
+Placebo	
+Plan C	
+Plum Flute	
+Portable Slot	
+Potato Peeler	
+Prayer Card	
+R Key	
+Razor Blade	
+Red Candle	
+Red Key	
+Remote Detonator	
+Sacrificial Altar	
+Satanic Bible	
+Scissors	
+Sharp Key	
+Sharp Straw	
+Shoop Da Whoop!	
+Smelter	
+Spider Butt	
+Spin to Win	
+Spindown Dice	
+Sprinkler	
+Stitches	
+Sulfur	
+Sumptorium	
+Suplex!	
+Tammy's Head	
+Tear Detonator	
+Telekinesis	
+Telepathy for Dummies	
+Teleport 2.0	
+Teleport!	
+The Bean	
+The Bible	
+The Book of Belial	
+The Book of Sin	
+The Boomerang	
+The Candle	
+The D6	
+The Gamekid	
+The Hourglass	
+The Jar	
+The Nail	
+The Necronomicon	
+The Pinking Shears	
+The Poop	
+The Scooper	
+Undefined	
+Unicorn Stump	
+Urn of Souls	
+Vade Retro	
+Ventricle Razor	
+Void	
+Wait What?	
+Wavy Cap	
+We Need to Go Deeper!	
+White Pony	
+Wooden Nickel	
+Yuck Heart	
+Yum Heart
