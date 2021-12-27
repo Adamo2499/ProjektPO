@@ -4,11 +4,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.util.Random;
 
 public class Main {
     static Random rng = new Random();
-    //TemplateCharacter basicIsaac = new TemplateCharacter();
+    Character statCharacter = new Character();
     public static void createGUI() {
         //lists of items
         Lists listy = new Lists();
@@ -296,7 +298,7 @@ public class Main {
                 listy.prepareList(startingPocket,"src/lists/cardsReversesList.txt");
             }
         });
-       runes.addActionListener(new ActionListener() {
+        runes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 startingPocket.removeAllItems();
@@ -333,44 +335,65 @@ public class Main {
                 }
             }
         });
-        createCharacterButton.addActionListener(new ActionListener() {
+        startingPassiveItem1.addFocusListener(new FocusListener() {
+
             @Override
-            public void actionPerformed(ActionEvent e) {
-                //Character myCharacter = new Character();
-                JOptionPane.showMessageDialog(null, "Udało się utworzyć postać!");
-                characterCreator.dispose();
-            }
-        });
-        startingPassiveItem1.addActionListener(new ActionListener() {
+            public void focusGained(FocusEvent e) {}
+
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void focusLost(FocusEvent e) {
                 if(startingPassiveItem1.getSelectedIndex() == 0){
-                    throw new IllegalArgumentException("Nie można wybrać wartości domyślnej!");
+                    JOptionPane.showMessageDialog(null,"Please select an item!");
                 }
                 else {
-                    startingPassiveItem2.removeItemAt(startingPassiveItem1.getSelectedIndex());
-                    startingPassiveItem3.removeItemAt(startingPassiveItem1.getSelectedIndex());
+                    if(startingPassiveItem1.getSelectedIndex() == startingPassiveItem2.getSelectedIndex() || startingPassiveItem1.getSelectedIndex() == startingPassiveItem3.getSelectedIndex()){
+                        JOptionPane.showMessageDialog(null,"Wybierz inny item jako pierwszy item pasywny!");
+                    }
                 }
+
+            }
+        });
+        startingPassiveItem2.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {}
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if(startingPassiveItem2.getSelectedIndex() == 0){
+                    JOptionPane.showMessageDialog(null,"Please select an item!");
+                }
+                else {
+                    if(startingPassiveItem2.getSelectedIndex() == startingPassiveItem1.getSelectedIndex() || startingPassiveItem2.getSelectedIndex() == startingPassiveItem3.getSelectedIndex()){
+                        JOptionPane.showMessageDialog(null,"Wybierz inny item jako drugi item pasywny!");
+                    }
+                }
+
+            }
+        });
+        startingPassiveItem3.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {}
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if(startingPassiveItem3.getSelectedIndex() == 0){
+                    JOptionPane.showMessageDialog(null,"Please select an item!");
+                }
+                else {
+                    if(startingPassiveItem3.getSelectedIndex() == startingPassiveItem1.getSelectedIndex() || startingPassiveItem3.getSelectedIndex() == startingPassiveItem2.getSelectedIndex()){
+                        JOptionPane.showMessageDialog(null,"Wybierz inny item jako trzeci item pasywny!");
+                    }
+                }
+
             }
         });
 
-        startingPassiveItem2.addActionListener(new ActionListener() {
+        createCharacterButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(startingPassiveItem1.getSelectedIndex() == 0){
-                    throw new IllegalArgumentException("Nie można wybrać wartości domyślnej!");
-                }
-                else {
-                    startingPassiveItem3.removeItemAt(startingPassiveItem2.getSelectedIndex());
-                }
-            }
-        });
-        startingPassiveItem3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(startingPassiveItem1.getSelectedIndex() == 0){
-                    throw new IllegalArgumentException("Nie można wybrać wartości domyślnej!");
-                }
+                //eksport postaci do pliku
+                JOptionPane.showMessageDialog(null, "Udało się utworzyć postać!");
+                characterCreator.dispose();
             }
         });
     }
