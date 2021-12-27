@@ -2,6 +2,7 @@ package com.company;
 
 public class Character {
     public final int MAX_HP = 12;
+    public String name = "Isaac";
     public int redHeartCounter = 3;
     public int soulHeartCounter = 0;
     public int blackHeartCounter = 0;
@@ -17,10 +18,11 @@ public class Character {
     public int keys = 0;
     public boolean canHaveRedHealth = true;
 
-    public Character(int redHeartsNumber, int soulHeartNummber, int blackHeartNumber, int boneHeartNumber,
+    public Character(String name, int redHeartsNumber, int soulHeartNummber, int blackHeartNumber, int boneHeartNumber,
                              int brokenHeartNumber, double damage, double tears, double shotSpeed, double range,
                              double shotSpeedValue, double luck, int coinsNumber, int bombsNumber, int keyNumber,
                      boolean canHaveRedHealth) {
+            this.name = name;
             this.redHeartCounter = redHeartsNumber;
             this.soulHeartCounter = soulHeartNummber;
             this.blackHeartCounter = blackHeartNumber;
@@ -35,5 +37,9 @@ public class Character {
             this.bombs = bombsNumber;
             this.keys = keyNumber;
             this.canHaveRedHealth = canHaveRedHealth;
+    }
+    @Override
+    public String toString(){
+        return "Name: "+this.name+"\n Red hearts: "+this.redHeartCounter+"\n Soul hearts: "+this.soulHeartCounter;
     }
 }

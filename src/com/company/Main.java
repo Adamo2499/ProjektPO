@@ -10,9 +10,11 @@ public class Main {
     static Random rng = new Random();
     //TemplateCharacter basicIsaac = new TemplateCharacter();
     public static void createGUI() {
+        //lists of items
+        Lists listy = new Lists();
         // create a frame
         JFrame characterCreator = new JFrame("Isaac Character Creator");
-        characterCreator.setSize(1024, 768);
+        characterCreator.setSize(400, 768);
         characterCreator.setLayout(null);
         characterCreator.setVisible(true);
         characterCreator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -47,6 +49,9 @@ public class Main {
         JComboBox startingPassiveItem1 = new JComboBox();
         JComboBox startingPassiveItem2 = new JComboBox();
         JComboBox startingPassiveItem3 = new JComboBox();
+        startingPassiveItem1.addItem("Passive item");
+        startingPassiveItem2.addItem("Passive item");
+        startingPassiveItem3.addItem("Passive item");
         JButton morePassiveItems = new JButton("Add passive item");
         //trinkets and pickups
         JLabel startingPickups = new JLabel("Starting pickups:");
@@ -63,7 +68,7 @@ public class Main {
         //pocket items
         JLabel pocketLabel = new JLabel("Card/Pill/Rune:");
         ButtonGroup pocketCategory = new ButtonGroup();
-        JRadioButton cards = new JRadioButton("Cards");
+        JRadioButton cards = new JRadioButton("Cards",true);
         JRadioButton runes = new JRadioButton("Runes");
         JRadioButton pills = new JRadioButton("Pills");
         JComboBox startingPocket = new JComboBox();
@@ -95,6 +100,14 @@ public class Main {
         characterCreator.setIconImage(coinIcon2.getImage());
         */
 
+        //add elements to comboboxes
+        listy.prepareList(startingTrinket,"src/lists/activeItemsList.txt");
+        listy.prepareList(startingActiveItem,"src/lists/activeItemsList.txt");
+        listy.prepareList(startingPocket,"src/lists/cardsReversesList.txt");
+        listy.prepareList(startingPassiveItem1,"src/lists/passiveItemsList.txt");
+        listy.prepareList(startingPassiveItem2,"src/lists/passiveItemsList.txt");
+        listy.prepareList(startingPassiveItem3,"src/lists/passiveItemsList.txt");
+
         //set sizes of elements
         characterNameLabel.setBounds(15, -35, 125, 100);
         characterName.setBounds(150, 5, 130, 25);
@@ -115,11 +128,11 @@ public class Main {
         brokenHeartIcon.setBounds(15,270,30,30);
         brokenHearts.setBounds(50,275,50,20);
         startingActiveItemLabel.setBounds(150,85,125,30);
-        startingActiveItem.setBounds(150,120,100,20);
+        startingActiveItem.setBounds(150,120,150,20);
         startingPassiveItemsLabel.setBounds(150,150,150,30);
-        startingPassiveItem1.setBounds(150,180,100,20);
-        startingPassiveItem2.setBounds(150,210,100,20);
-        startingPassiveItem3.setBounds(150,240,100,20);
+        startingPassiveItem1.setBounds(150,180,150,20);
+        startingPassiveItem2.setBounds(150,210,150,20);
+        startingPassiveItem3.setBounds(150,240,150,20);
         noRedHealth.setBounds(150,270,200,25);
         canHavePocketItem.setBounds(150,290,200,30);
 
@@ -257,18 +270,15 @@ public class Main {
         randomTrinket.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //int trinketID = rng.nextInt(1, 189);
                 int trinketID = rng.nextInt(1, startingTrinket.getItemCount());
                 JOptionPane.showMessageDialog(null,"Trinket ID: "+trinketID);
                 startingTrinket.setSelectedIndex(trinketID);
-                //startingTrinket.setSelectedIndex(trinketID);
             }
         });
         randomActiveItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int activeItemID = rng.nextInt(1, startingActiveItem.getItemCount());
-                JOptionPane.showMessageDialog(null,"Trinket ID: "+activeItemID);
                 startingActiveItem.setSelectedIndex(activeItemID);
             }
         });
@@ -276,8 +286,28 @@ public class Main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int pocketID = rng.nextInt(1, startingPocket.getItemCount());
-                JOptionPane.showMessageDialog(null,"Trinket ID: "+pocketID);
                 startingPocket.setSelectedIndex(pocketID);
+            }
+        });
+        cards.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                startingPocket.removeAllItems();
+                listy.prepareList(startingPocket,"src/lists/cardsReversesList.txt");
+            }
+        });
+       runes.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                startingPocket.removeAllItems();
+                listy.prepareList(startingPocket,"src/lists/runesSoulStones.txt");
+            }
+        });
+        pills.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                startingPocket.removeAllItems();
+                listy.prepareList(startingPocket,"src/lists/pillsList.txt");
             }
         });
         noRedHealth.addActionListener(new ActionListener() {
@@ -307,8 +337,41 @@ public class Main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //Character myCharacter = new Character();
-                JOptionPane.showMessageDialog(null, "Nazwa postaci: "+characterName.getText());
+                JOptionPane.showMessageDialog(null, "Udało się utworzyć postać!");
                 characterCreator.dispose();
+            }
+        });
+        startingPassiveItem2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(startingPassiveItem1.getSelectedIndex() == 0){
+                    throw new IllegalArgumentException("Nie można wybrać wartości domyślnej!");
+                }
+            }
+        });
+        startingPassiveItem2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(startingPassiveItem2.getSelectedIndex() == 0){
+                    throw new IllegalArgumentException("Nie można wybrać wartości domyślnej!");
+                }
+                else {
+                    //if(startingPassiveItem1.getSelectedIndex() != 0 && startingPassiveItem2.getSelectedIndex()){
+                    }
+            }
+        });
+        startingPassiveItem3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(startingPassiveItem3.getSelectedIndex() == 0){
+                    throw new IllegalArgumentException("Nie można wybrać wartości domyślnej!");
+                }
+                else {
+                    if(startingPassiveItem2.getSelectedIndex() != 0 ){
+                        startingPassiveItem3.removeItemAt(startingPassiveItem1.getSelectedIndex());
+                        startingPassiveItem3.removeItemAt(startingPassiveItem2.getSelectedIndex());
+                    }
+                }
             }
         });
     }
