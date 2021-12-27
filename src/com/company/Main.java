@@ -17,6 +17,7 @@ public class Main {
         characterCreator.setVisible(true);
         characterCreator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //create form elements
+        //name and category
         JLabel characterNameLabel = new JLabel("Character's name: ");
         TextField characterName = new TextField("Who am I?");
         ButtonGroup characterCategory = new ButtonGroup();
@@ -55,11 +56,18 @@ public class Main {
         TextField bombs = new TextField("0");
         JLabel keyIcon = new JLabel(new ImageIcon("src/icons/pickups/Key.png"));
         TextField key = new TextField("0");
+        //trinket
         JLabel trinketLabel = new JLabel("Trinket:");
-        JButton randomTrinket = new JButton("Get random trinket");
-        JLabel pickupLabel = new JLabel("Card/Pill/Rune/Soul Stone:");
-        JButton randomPickup = new JButton("Get random pickup:");
-        JButton createCharacterButton = new JButton("Create a character");
+        JComboBox startingTrinket = new JComboBox();
+        JButton randomTrinket = new JButton("Random");
+        //pocket items
+        JLabel pocketLabel = new JLabel("Card/Pill/Rune:");
+        ButtonGroup pocketCategory = new ButtonGroup();
+        JRadioButton cards = new JRadioButton("Cards");
+        JRadioButton runes = new JRadioButton("Runes");
+        JRadioButton pills = new JRadioButton("Pills");
+        JComboBox startingPocket = new JComboBox();
+        JButton randomPocket = new JButton("Random");
         //stats
         JLabel startingStatsLabel = new JLabel("Starting statistics");
         JLabel damageIcon = new JLabel(new ImageIcon("src/icons/stats/damage.png"));
@@ -78,14 +86,14 @@ public class Main {
         JLabel specialAbilities = new JLabel("Special abilities:");
         JCheckBox noRedHealth = new JCheckBox("Can't have red health");
         JCheckBox canHavePocketItem = new JCheckBox("Can have pocket item");
-        //
+        //create chracter
+        JButton createCharacterButton = new JButton("Create a character");
 
         //set frame icon
         /*
-        ImageIcon coinIcon2 = new ImageIcon("src/icons/pickups/Penny.png");
+        ImageIcon isaacIcon = new ImageIcon("src/icons/pickups/Character_Isaac_icon.png");
         characterCreator.setIconImage(coinIcon2.getImage());
         */
-
 
         //set sizes of elements
         characterNameLabel.setBounds(15, -35, 125, 100);
@@ -112,9 +120,9 @@ public class Main {
         startingPassiveItem1.setBounds(150,180,100,20);
         startingPassiveItem2.setBounds(150,210,100,20);
         startingPassiveItem3.setBounds(150,240,100,20);
+        noRedHealth.setBounds(150,270,200,25);
+        canHavePocketItem.setBounds(150,290,200,30);
 
-        noRedHealth.setBounds(150,270,150,25);
-        canHavePocketItem.setBounds(150,285,150,50);
         startingPickups.setBounds(15,300,100,30);
         coinIcon.setBounds(15,330,30,30);
         coins.setBounds(50,335,50,20);
@@ -122,7 +130,6 @@ public class Main {
         bombs.setBounds(50,365,50,20);
         keyIcon.setBounds(15,390,30,30);
         key.setBounds(50,395,50,20);
-        //randomTrinket.setBounds(200,100,150,25);
         startingStatsLabel.setBounds(15,420,100,30);
         speedIcon.setBounds(15,450,30,30);
         moveSpeed.setBounds(50,455,50,20);
@@ -136,7 +143,18 @@ public class Main {
         shotSpeed.setBounds(50,575,50,20);
         luckIcon.setBounds(15,600,30,30);
         luck.setBounds(50,605,50,20);
-        createCharacterButton.setBounds(25,635,200,30);
+        trinketLabel.setBounds(15,630,100,20);
+        startingTrinket.setBounds(15,650,210,20);
+        randomTrinket.setBounds(120,630,100,20);
+        pocketLabel.setBounds(150,330,100,30);
+        cards.setBounds(150, 360, 75, 30);
+        pills.setBounds(225, 360, 75, 30);
+        runes.setBounds(300, 360, 75, 30);
+        startingPocket.setBounds(150,400,200,25);
+        randomPocket.setBounds(250,330,100,30);
+
+
+        createCharacterButton.setBounds(20,680,200,30);
 
 
         //add elements to form
@@ -167,8 +185,9 @@ public class Main {
         characterCreator.add(startingPassiveItem3);
         characterCreator.add(morePassiveItems);
         characterCreator.add(trinketLabel);
+        characterCreator.add(startingTrinket);
         characterCreator.add(randomTrinket);
-        characterCreator.add(pickupLabel);
+        characterCreator.add(pocketLabel);
         characterCreator.add(startingPickups);
         characterCreator.add(coinIcon);
         characterCreator.add(coins);
@@ -189,17 +208,27 @@ public class Main {
         characterCreator.add(speedIcon);
         characterCreator.add(luckIcon);
         characterCreator.add(luck);
-        characterCreator.add(randomPickup);
+        characterCreator.add(randomPocket);
         characterCreator.add(specialAbilities);
         characterCreator.add(noRedHealth);
         characterCreator.add(canHavePocketItem);
+        characterCreator.add(pocketLabel);
+        characterCreator.add(cards);
+        characterCreator.add(runes);
+        characterCreator.add(pills);
+        characterCreator.add(startingPocket);
         characterCreator.add(createCharacterButton);
+
 
 
         //add elements to groups
         characterCategory.add(category1);
         characterCategory.add(category2);
         characterCategory.add(category3);
+
+        pocketCategory.add(pills);
+        pocketCategory.add(cards);
+        pocketCategory.add(runes);
 
 
         //action listeners
@@ -225,17 +254,30 @@ public class Main {
                 characterName.setText("The "+charName);
             }
         });
-        randomActiveItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //
-            }
-        });
         randomTrinket.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int trinketID = rng.nextInt(1,189);
+                //int trinketID = rng.nextInt(1, 189);
+                int trinketID = rng.nextInt(1, startingTrinket.getItemCount());
                 JOptionPane.showMessageDialog(null,"Trinket ID: "+trinketID);
+                startingTrinket.setSelectedIndex(trinketID);
+                //startingTrinket.setSelectedIndex(trinketID);
+            }
+        });
+        randomActiveItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int activeItemID = rng.nextInt(1, startingActiveItem.getItemCount());
+                JOptionPane.showMessageDialog(null,"Trinket ID: "+activeItemID);
+                startingActiveItem.setSelectedIndex(activeItemID);
+            }
+        });
+        randomPocket.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int pocketID = rng.nextInt(1, startingPocket.getItemCount());
+                JOptionPane.showMessageDialog(null,"Trinket ID: "+pocketID);
+                startingPocket.setSelectedIndex(pocketID);
             }
         });
         noRedHealth.addActionListener(new ActionListener() {
@@ -265,9 +307,10 @@ public class Main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //Character myCharacter = new Character();
+                JOptionPane.showMessageDialog(null, "Nazwa postaci: "+characterName.getText());
+                characterCreator.dispose();
             }
         });
-        //redHearts.setText(String.valueOf(super.redHeartCounter));
     }
     public static void main(String[] args) {
         createGUI();

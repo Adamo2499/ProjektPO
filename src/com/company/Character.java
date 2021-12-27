@@ -15,10 +15,12 @@ public class Character {
     public int coins = 0;
     public int bombs = 0;
     public int keys = 0;
+    public boolean canHaveRedHealth = true;
 
     public Character(int redHeartsNumber, int soulHeartNummber, int blackHeartNumber, int boneHeartNumber,
                              int brokenHeartNumber, double damage, double tears, double shotSpeed, double range,
-                             double shotSpeedValue, double luck, int coinsNumber, int bombsNumber, int keyNumber) {
+                             double shotSpeedValue, double luck, int coinsNumber, int bombsNumber, int keyNumber,
+                     boolean canHaveRedHealth) {
             this.redHeartCounter = redHeartsNumber;
             this.soulHeartCounter = soulHeartNummber;
             this.blackHeartCounter = blackHeartNumber;
@@ -32,5 +34,6 @@ public class Character {
             this.coins = coinsNumber;
             this.bombs = bombsNumber;
             this.keys = keyNumber;
+            this.canHaveRedHealth = canHaveRedHealth;
     }
 }
