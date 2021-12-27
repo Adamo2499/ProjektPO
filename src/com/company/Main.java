@@ -34,11 +34,11 @@ public class Main {
         JLabel boneHeartIcon = new JLabel(new ImageIcon("src/icons/hearts/HUD_heart_bone_empty.png"));
         JLabel rottenHeartIcon = new JLabel(new ImageIcon("src/icons/hearts/HUD_heart_rotten.png"));
         JLabel brokenHeartIcon = new JLabel(new ImageIcon("src/icons/hearts/HUD_Broken_Heart.png"));
-        TextField redHearts = new TextField("1");
-        TextField soulHearts = new TextField("1");
-        TextField blackHearts = new TextField("1");
-        TextField boneHearts = new TextField("1");
-        TextField rottenHearts = new TextField("1");
+        TextField redHearts = new TextField("3");
+        TextField soulHearts = new TextField("0");
+        TextField blackHearts = new TextField("0");
+        TextField boneHearts = new TextField("0");
+        TextField rottenHearts = new TextField("0");
         TextField brokenHearts = new TextField("0");
         // items
         JLabel startingActiveItemLabel = new JLabel("Starting active item: ");
@@ -76,17 +76,17 @@ public class Main {
         //stats
         JLabel startingStatsLabel = new JLabel("Starting statistics");
         JLabel damageIcon = new JLabel(new ImageIcon("src/icons/stats/damage.png"));
-        TextField damage = new TextField("0.00");
+        TextField damage = new TextField("3.50");
         JLabel luckIcon = new JLabel(new ImageIcon("src/icons/stats/luck.png"));
         TextField luck = new TextField("0.00");
         JLabel rangeIcon = new JLabel(new ImageIcon("src/icons/stats/range.png"));
-        TextField range = new TextField("0.00");
+        TextField range = new TextField("6.50");
         JLabel shotSpeedIcon = new JLabel(new ImageIcon("src/icons/stats/shot_speed.png"));
-        TextField shotSpeed = new TextField("0.00");
+        TextField shotSpeed = new TextField("1.00");
         JLabel speedIcon = new JLabel(new ImageIcon("src/icons/stats/speed.png"));
-        TextField moveSpeed = new TextField("0.00");
+        TextField moveSpeed = new TextField("1.00");
         JLabel tearsIcon = new JLabel(new ImageIcon("src/icons/stats/tears.png"));
-        TextField tears = new TextField("0.00");
+        TextField tears = new TextField("2.73");
         //interfaces
         JLabel specialAbilities = new JLabel("Special abilities:");
         JCheckBox noRedHealth = new JCheckBox("Can't have red health");
@@ -341,36 +341,35 @@ public class Main {
                 characterCreator.dispose();
             }
         });
+        startingPassiveItem1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(startingPassiveItem1.getSelectedIndex() == 0){
+                    throw new IllegalArgumentException("Nie można wybrać wartości domyślnej!");
+                }
+                else {
+                    startingPassiveItem2.removeItemAt(startingPassiveItem1.getSelectedIndex());
+                    startingPassiveItem3.removeItemAt(startingPassiveItem1.getSelectedIndex());
+                }
+            }
+        });
+
         startingPassiveItem2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(startingPassiveItem1.getSelectedIndex() == 0){
                     throw new IllegalArgumentException("Nie można wybrać wartości domyślnej!");
                 }
-            }
-        });
-        startingPassiveItem2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(startingPassiveItem2.getSelectedIndex() == 0){
-                    throw new IllegalArgumentException("Nie można wybrać wartości domyślnej!");
-                }
                 else {
-                    //if(startingPassiveItem1.getSelectedIndex() != 0 && startingPassiveItem2.getSelectedIndex()){
-                    }
+                    startingPassiveItem3.removeItemAt(startingPassiveItem2.getSelectedIndex());
+                }
             }
         });
         startingPassiveItem3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(startingPassiveItem3.getSelectedIndex() == 0){
+                if(startingPassiveItem1.getSelectedIndex() == 0){
                     throw new IllegalArgumentException("Nie można wybrać wartości domyślnej!");
-                }
-                else {
-                    if(startingPassiveItem2.getSelectedIndex() != 0 ){
-                        startingPassiveItem3.removeItemAt(startingPassiveItem1.getSelectedIndex());
-                        startingPassiveItem3.removeItemAt(startingPassiveItem2.getSelectedIndex());
-                    }
                 }
             }
         });
