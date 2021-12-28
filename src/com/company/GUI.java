@@ -6,11 +6,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.text.ParseException;
 import java.util.Random;
 
 public class GUI {
     boolean statsOK = true;
     JFrame characterCreator = new JFrame("Isaac Character Creator");
+    Character newCharacter = new Character();
     //create form elements
     //name and category
     JLabel characterNameLabel = new JLabel("Imię postaci: ");
@@ -41,7 +43,6 @@ public class GUI {
     JComboBox startingPassiveItem1 = new JComboBox();
     JComboBox startingPassiveItem2 = new JComboBox();
     JComboBox startingPassiveItem3 = new JComboBox();
-
     JButton morePassiveItems = new JButton("Add passive item");
     //trinkets and pickups
     JLabel startingPickups = new JLabel("Startowe pickupy:");
@@ -150,7 +151,7 @@ public class GUI {
         bombs.setBounds(50,365,50,20);
         keyIcon.setBounds(15,390,30,30);
         key.setBounds(50,395,50,20);
-        startingStatsLabel.setBounds(15,420,100,30);
+        startingStatsLabel.setBounds(15,420,200,30);
         speedIcon.setBounds(15,450,30,30);
         moveSpeed.setBounds(50,455,50,20);
         tearsIcon.setBounds(15,480,30,30);
@@ -251,7 +252,7 @@ public class GUI {
         pocketCategory.add(cards);
         pocketCategory.add(runes);
 
-        //hide elements
+        //hide pocket item elements
         pocketItemLabel.setVisible(false);
         startingPocketItem.setVisible(false);
         randomPocketItem.setVisible(false);
@@ -265,14 +266,20 @@ public class GUI {
                 if(e.getSource() == category1){
                     characterName.setText("");
                     characterName.setText(charName);
+                    newCharacter.name = characterName.getText();
+                    newCharacter.category = category1.getText();
                 }
                 if(e.getSource() == category2){
                     characterName.setText("");
                     characterName.setText("T. "+charName);
+                    newCharacter.name = characterName.getText();
+                    newCharacter.category = category2.getText();
                 }
                 if(e.getSource() == category3){
                     characterName.setText("");
                     characterName.setText("The "+charName);
+                    newCharacter.name = characterName.getText();
+                    newCharacter.category = category3.getText();
                 }
                 if(e.getSource() == randomTrinket){
                     int trinketID = rng.nextInt(1, startingTrinket.getItemCount());
@@ -313,11 +320,25 @@ public class GUI {
                 }
                 if(e.getSource() == canHavePocketItem){
                     if(canHavePocketItem.isSelected()){
-                        JOptionPane.showMessageDialog(null,"Your character can have pocket item!");
+                        JOptionPane.showMessageDialog(null,"Twoja postać może mieć pocket item!");
+                        pocketItemLabel.setVisible(true);
+                        startingPocketItem.setVisible(true);
+                        randomPocketItem.setVisible(true);
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(null,"Twoja postać nie może mieć pocket itemu!");
+                        pocketItemLabel.setVisible(false);
+                        startingPocketItem.setVisible(false);
+                        randomPocketItem.setVisible(false);
                     }
                 }
                 if(e.getSource() == createCharacterButton){
-
+                    if(statsOK){
+                        JOptionPane.showMessageDialog(null, "Udało się utworzyć postać!");
+                        JOptionPane.showMessageDialog(null,newCharacter.toString());
+                        //eksport postaci do pliku
+                        characterCreator.dispose();
+                    }
                 }
             }
         };
@@ -327,6 +348,26 @@ public class GUI {
             public void focusGained(FocusEvent e) {}
             @Override
             public void focusLost(FocusEvent e) {
+                if(e.getSource() == characterName){
+                    if(charName.contains("Who am I?")){
+                        JOptionPane.showMessageDialog(null,"Proszę nadać postaci imię");
+                        statsOK = false;
+                        characterName.requestFocus();
+                    }
+                    else {
+                        newCharacter.name = charName;
+                    }
+                }
+                if(e.getSource() == startingActiveItem){
+                        if(startingActiveItem.getSelectedIndex() != 0){
+                            newCharacter.activeItem = startingActiveItem.getSelectedItem().toString();
+                        }
+                }
+                if(e.getSource() == startingTrinket){
+                    if(startingTrinket.getSelectedIndex() != 0){
+                        newCharacter.trinket = startingTrinket.getSelectedItem().toString();
+                    }
+                }
                 if(e.getSource() == startingPassiveItem1){
                     if(startingPassiveItem1.getSelectedIndex() == 0){
                         JOptionPane.showMessageDialog(null,"Proszę wybrać item!");
@@ -334,6 +375,9 @@ public class GUI {
                     else {
                         if(startingPassiveItem1.getSelectedIndex() == startingPassiveItem2.getSelectedIndex() || startingPassiveItem1.getSelectedIndex() == startingPassiveItem3.getSelectedIndex()){
                             JOptionPane.showMessageDialog(null,"Wybierz inny item jako pierwszy item pasywny!");
+                        }
+                        else {
+                            newCharacter.passiveItem1 = startingPassiveItem1.getSelectedItem().toString();
                         }
                     }
                 }
@@ -345,6 +389,9 @@ public class GUI {
                         if(startingPassiveItem2.getSelectedIndex() == startingPassiveItem1.getSelectedIndex() || startingPassiveItem2.getSelectedIndex() == startingPassiveItem3.getSelectedIndex()){
                             JOptionPane.showMessageDialog(null,"Wybierz inny item jako drugi item pasywny!");
                         }
+                        else {
+                            newCharacter.passiveItem2 = startingPassiveItem2.getSelectedItem().toString();
+                        }
                     }
                 }
                 if(e.getSource() == startingPassiveItem3){
@@ -355,6 +402,43 @@ public class GUI {
                         if(startingPassiveItem3.getSelectedIndex() == startingPassiveItem1.getSelectedIndex() || startingPassiveItem3.getSelectedIndex() == startingPassiveItem2.getSelectedIndex()){
                             JOptionPane.showMessageDialog(null,"Wybierz inny item jako trzeci item pasywny!");
                         }
+                        else {
+                            newCharacter.passiveItem3 = startingPassiveItem3.getSelectedItem().toString();
+                        }
+                    }
+                }
+                if(e.getSource() == startingPickups){
+                    if(startingPocket.getSelectedIndex() != 0){
+                        newCharacter.pocket = startingPocket.getSelectedItem().toString();
+                    }
+                }
+                if(e.getSource() == coins){
+                    int coinCounter = Integer.parseInt(coins.getText());
+                    if(coinCounter < 0){
+                        JOptionPane.showMessageDialog(null,"Nie można mieć mniej niż 0 coinów");
+                        statsOK = false;
+                        coins.requestFocus();
+                    }
+                    else if(coinCounter > 99 && (!startingPassiveItem1.getSelectedItem().toString().equals("Deep " +
+                            "Pockets")) || !startingPassiveItem2.getSelectedItem().toString().equals("Deep Pockets") || !startingPassiveItem3.getSelectedItem().toString().equals("Deep Pockets")) {
+                        JOptionPane.showMessageDialog(null,"Nie można mieć więcej niż 99 coinów");
+                        statsOK = false;
+                        coins.requestFocus();
+                    }
+                    else {
+                        newCharacter.coins = coinCounter;
+                    }
+                }
+                if(e.getSource() == bombs){
+                    int bombCounter = Integer.parseInt(bombs.getText());
+                    if(bombCounter < 0 || bombCounter > 99){
+                        JOptionPane.showMessageDialog(null,"Nieprawidłowa ilość bomb");
+                    }
+                }
+                if(e.getSource() == key){
+                    int keysCounter = Integer.parseInt(key.getText());
+                    if(keysCounter < 0 || keysCounter > 99){
+                        JOptionPane.showMessageDialog(null,"Nieprawidłowa ilość kluczy");
                     }
                 }
                 if(e.getSource() == moveSpeed){
@@ -364,6 +448,9 @@ public class GUI {
                         statsOK = false;
                         moveSpeed.requestFocus();
                     }
+                    else {
+                        newCharacter.speed = speedValue;
+                    }
                 }
                 if (e.getSource() == damage) {
                     double damageValue = Double.parseDouble(damage.getText());
@@ -372,11 +459,19 @@ public class GUI {
                         statsOK = false;
                         damage.requestFocus();
                     }
+                    else {
+                        newCharacter.damage = damageValue;
+                    }
                 }
                 if(e.getSource() == tears){
                     double tearsValue = Double.parseDouble(tears.getText());
                     if(tearsValue < 0.5 || tearsValue > 5.0){
                         JOptionPane.showMessageDialog(null,"Tears have to be between 0.5-5.0!");
+                        statsOK = false;
+                        tears.requestFocus();
+                    }
+                    else {
+                        newCharacter.tears = tearsValue;
                     }
                 }
                 if(e.getSource() == shotSpeed){
@@ -384,6 +479,32 @@ public class GUI {
                     if(shotSpeedValue < 0.60 || shotSpeedValue > 2.00){
                         JOptionPane.showMessageDialog(null,"Speed have to be between 0.6-2.0");
                         statsOK = false;
+                        shotSpeed.requestFocus();
+                    }
+                    else {
+                        newCharacter.shotSpeed = shotSpeedValue;
+                    }
+                }
+                if(e.getSource() == luck){
+                        double luckValue = Double.parseDouble(luck.getText());
+                        if(luckValue < -3.0){
+                            JOptionPane.showMessageDialog(null,"Luck musi być większy niż -3.0");
+                            statsOK = false;
+                            luck.requestFocus();
+                        }
+                        else {
+                            newCharacter.luck = luckValue;
+                        }
+                }
+                if(e.getSource() == range){
+                    double rangeValue = Double.parseDouble(range.getText());
+                    if(rangeValue < 1.0){
+                        JOptionPane.showMessageDialog(null,"Range musi być większy niż 1.0");
+                        statsOK = false;
+                        range.requestFocus();
+                    }
+                    else {
+                        newCharacter.range = rangeValue;
                     }
                 }
             }
@@ -399,6 +520,7 @@ public class GUI {
         pills.addActionListener(al);
         noRedHealth.addActionListener(al);
         canHavePocketItem.addActionListener(al);
+        createCharacterButton.addActionListener(al);
 
         startingPassiveItem1.addFocusListener(fl);
         startingPassiveItem2.addFocusListener(fl);
@@ -406,16 +528,5 @@ public class GUI {
         moveSpeed.addFocusListener(fl);
         damage.addFocusListener(fl);
         shotSpeed.addFocusListener(fl);
-
-        createCharacterButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(statsOK){
-                    //eksport postaci do pliku
-                    JOptionPane.showMessageDialog(null, "Udało się utworzyć postać!");
-                    characterCreator.dispose();
-                }
-            }
-        });
     }
 }
