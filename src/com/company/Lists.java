@@ -2,11 +2,10 @@ package com.company;
 
 import javax.swing.*;
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class Lists extends Main {
+public class Lists extends GUI {
     BufferedReader reader;
     public void prepareList(JComboBox comboBoxElement, String listPath){
         int index=0;
