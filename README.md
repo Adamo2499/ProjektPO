@@ -11,4 +11,4 @@ To run this project, you have to download:
 In Intelij:\
 File > Project Structure > SDK > Select\
 In Eclipse:\
-Window > Preferences > Java > Installed JRE's >  Add > Standard VM > Next > Select > Finish\
+Window > Preferences > Java > Installed JRE's >  Add > Standard VM > Next > Select > Finish
