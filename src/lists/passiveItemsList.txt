@@ -1,6 +1,548 @@
-A
-B
-C
-D
-E
-F
+120 Volt	
+1up!	
+20/20
+2Spooky	
+3 Dollar Bill	
+4.5 Volt	
+7 Seals	
+8 Inch Nails	
+9 Volt	
+<3	
+???'s Only Friend	
+A Bar of Soap	
+A Dollar	
+A Lump of Coal	
+A Pound of Flesh	
+A Quarter	
+A Snack	
+Abaddon	
+Abel	
+Acid Baby	
+Act of Contrition	
+Adrenaline	
+Akeldama	
+Almond Milk	
+Analog Stick	
+Anemic	
+Angelic Prism	
+Angry Fly	
+Ankh	
+Anti-Gravity	
+Apple!	
+Aquarius	
+Aries	
+Astral Projection	
+Athame	
+Azazel's Rage	
+Backstabber	
+Ball of Bandages	
+Ball of Tar	
+Battery Pack	
+BBF	
+Belly Button	
+Belly Jelly	
+Best Bud	
+Betrayal	
+BFFS!	
+Big Chubby	
+Big Fan	
+Binge Eater	
+Binky	
+Bird Cage	
+Bird's Eye	
+Birthright	
+Black Candle	
+Black Lotus	
+Black Powder	
+Blanket	
+Blood Bag	
+Blood Bombs	
+Blood Clot	
+Blood Oath	
+Blood of the Martyr	
+Blood Puppy	
+Bloodshot Eye	
+Bloody Gust	
+Bloody Lust	
+Blue Cap	
+Blue Map	
+Bob's Brain	
+Bob's Curse	
+Bobby-Bomb	
+Bogo Bombs	
+Boiled Baby	
+Bomb Bag	
+Bomber Boy	
+Bone Spurs	
+Boom!	
+Booster Pack	
+Bot Fly	
+Box	
+Bozo	
+Breakfast	
+Brimstone	
+Brimstone Bombs	
+Brittle Bones	
+Broken Modem	
+Broken Shovel	
+Broken Watch	
+Brother Bobby	
+Bucket of Lard	
+Buddy in a Box	
+Bum Friend	
+Bumbo	
+Bursting Sack	
+Butt Bombs	
+C Section	
+Caffeine Pill	
+Cain's Other Eye	
+Cambion Conception	
+Camo Undies	
+Cancer	
+Candy Heart	
+Capricorn	
+Car Battery	
+Card Reading	
+Cat-O-Nine-Tails	
+Celtic Cross	
+Censer	
+Ceremonial Robes	
+Champion Belt	
+Chaos	
+Charged Baby	
+Charm of the Vampire	
+Chemical Peel	
+Chocolate Milk	
+Circle of Protection	
+Compound Fracture	
+Cone Head	
+Consolation Prize	
+Contagion	
+Continuum	
+Contract From Below	
+Crack Jacks	
+Cracked Orb	
+Cricket's Body	
+Cricket's Head	
+Crown of Light	
+Cube Baby	
+Cube of Meat	
+Cupid's Arrow	
+Curse of the Tower	
+Cursed Eye	
+Dad's Lost Coin	
+Dad's Note	
+Dad's Ring	
+Daddy Longlegs	
+Dark Bum	
+Dark Matter	
+Dark Prince's Crown	
+Dead Bird	
+Dead Cat	
+Dead Dove	
+Dead Eye	
+Dead Onion	
+Dead Tooth	
+Death's List	
+Death's Touch	
+Deep Pockets	
+Demon Baby	
+Depression	
+Dessert	
+Dinner	
+Dirty Mind	
+Distant Admiration	
+Divine Intervention	
+Divorce Papers	
+Dog Tooth	
+Dogma	
+Dr. Fetus	
+Dream Catcher	
+Dry Baby	
+Duality	
+E. Coli	
+Echo Chamber	
+Eden's Blessing	
+Empty Heart	
+Empty Vessel	
+Epic Fetus	
+Epiphora	
+Eucharist	
+Euthanasia	
+Eve's Mascara	
+Evil Charm	
+Evil Eye	
+Experimental Treatment	
+Explosivo	
+Eye Drops	
+Eye of Belial	
+Eye of Greed	
+Eye of the Occult	
+Eye Sore	
+False PHD	
+Fanny Pack	
+Farting Baby	
+Fast Bombs	
+Fate	
+Fate's Reward	
+Finger!	
+Fire Mind	
+Flat Stone	
+Forever Alone	
+Freezer Baby	
+Friend Zone	
+Fruit Cake	
+Fruity Plum	
+GB Bug	
+Gemini	
+Ghost Baby	
+Ghost Bombs	
+Ghost Pepper	
+Giant Cell	
+Gimpy	
+Glass Eye	
+Glaucoma	
+Glitched Crown	
+Glitter Bombs	
+Glyph of Balance	
+Gnawed Leaf	
+Goat Head	
+God's Flesh	
+Godhead	
+Greed's Gullet	
+Growth Hormones	
+Guardian Angel	
+Guillotine	
+Guppy's Collar	
+Guppy's Eye	
+Guppy's Hair Ball	
+Guppy's Tail	
+Habit	
+Haemolacria	
+Hallowed Ground	
+Halo of Flies	
+Harlequin Baby	
+Head of the Keeper	
+Headless Baby	
+Heartbreak	
+Hemoptysis	
+Hive Mind	
+Holy Grail	
+Holy Light	
+Holy Mantle	
+Holy Water	
+Host Hat	
+Hot Bombs	
+Humbling Bundle	
+Hungry Soul	
+Hushy	
+Hypercoagulation	
+IBS	
+Immaculate Conception	
+Immaculate Heart	
+Incubus	
+Infamy	
+Infestation	
+Infestation 2	
+Inner Child	
+Ipecac	
+Iron Bar	
+Isaac's Heart	
+Isaac's Tomb	
+It Hurts	
+Jacob's Ladder	
+Jaw Bone	
+Jesus Juice	
+Judas' Shadow	
+Juicy Sack	
+Jumper Cables	
+Jupiter	
+Keeper's Kin	
+Keeper's Sack	
+Key Bum	
+Key Piece 1	
+Key Piece 2	
+Kidney Stone	
+King Baby	
+Knife Piece 1	
+Knife Piece 2	
+Knockout Drops	
+Lachryphagy	
+Large Zit	
+Latch Key	
+Lazarus' Rags	
+Lead Pencil	
+Leech	
+Leo	
+Leprosy	
+Libra	
+Lil Abaddon	
+Lil Brimstone	
+Lil Chest	
+Lil Delirium	
+Lil Dumpy	
+Lil Gurdy	
+Lil Haunt	
+Lil Loki	
+Lil Monstro	
+Lil Portal	
+Lil Spewer	
+Linger Bean	
+Little Baggy	
+Little C.H.A.D.	
+Little Chubby	
+Little Gish	
+Little Horn	
+Little Steven	
+Lodestone	
+Loki's Horns	
+Lord of the Pit	
+Lost Contact	
+Lost Fly	
+Lost Soul	
+Lucky Foot	
+Luna	
+Lunch	
+Lusty Blood	
+Maggy's Bow	
+Magic 8 Ball	
+Magic Mushroom	
+Magic Scab	
+Magneto	
+Marbles	
+Marked	
+Marrow	
+Mars	
+Match Book	
+Maw of the Void	
+MEAT!	
+Member Card	
+Mercurius	
+Metal Plate	
+Midas' Touch	
+Midnight Snack	
+Milk!	
+Mini Mush	
+Missing No.	
+Missing Page 2	
+Mitre	
+Mom's Coin Purse	
+Mom's Contacts	
+Mom's Eye	
+Mom's Eyeshadow	
+Mom's Heels	
+Mom's Key	
+Mom's Knife	
+Mom's Lipstick	
+Mom's Pearls	
+Mom's Perfume	
+Mom's Purse	
+Mom's Razor	
+Mom's Ring	
+Mom's Underwear	
+Mom's Wig	
+Money = Power	
+Mongo Baby	
+Monstrance	
+Monstro's Lung	
+Montezuma's Revenge	
+More Options	
+Mr. Dolly	
+Mr. Mega	
+Mucormycosis	
+Multidimensional Baby	
+Mutant Spider	
+My Reflection	
+My Shadow	
+Mysterious Liquid	
+Mystery Egg	
+Mystery Sack	
+Nancy Bombs	
+Neptunus	
+Night Light	
+Number One	
+Number Two	
+Obsessed Fan	
+Ocular Rift	
+Odd Mushroom	
+Odd Mushroom	
+Old Bandage	
+Options?	
+Orphan Socks	
+Ouija Board	
+Pageant Boy	
+Papa Fly	
+Parasitoid	
+Paschal Candle	
+Pay to Play	
+Pentagram	
+PHD	
+Piggy Bank	
+Pisces	
+PJs	
+Placenta	
+Playdough Cookie	
+Pluto	
+Pointy Rib	
+Poke Go	
+Polydactyly	
+Polyphemus	
+Pop!	
+Proptosis	
+Psy Fly	
+Punching Bag	
+Pupula Duplex	
+Purgatory	
+Purity	
+Pyro	
+Pyromaniac	
+Quints	
+Rainbow Baby	
+Raw Liver	
+Red Stew	
+Redemption	
+Restock	
+Revelation	
+Robo-Baby	
+Robo-Baby 2.0	
+Rock Bottom	
+Rocket in a Jar	
+Roid Rage	
+Rosary	
+Rotten Baby	
+Rotten Meat	
+Rotten Tomato	
+Rubber Cement	
+Rune Bag	
+Sack Head	
+Sack of Pennies	
+Sack of Sacks	
+Sacred Heart	
+Sacred Orb	
+Sacrificial Dagger	
+Sad Bombs	
+Safety Pin	
+Sagittarius	
+Salvation	
+Samson's Chains	
+Sanguine Bond	
+Saturnus	
+Sausage	
+Scapular	
+Scatter Bombs	
+Schoolbag	
+Scorpio	
+Screw	
+Seraphim	
+Serpent's Kiss	
+Shade	
+Shard of Glass	
+Sharp Plug	
+Sinus Infection	
+Sissy Longlegs	
+Sister Maggy	
+Skatole	
+Skeleton Key	
+Slipped Rib	
+Smart Fly	
+SMB Super Fan	
+Sol	
+Soul Locket	
+Soy Milk	
+Spear of Destiny	
+Speed Ball	
+Spelunker Hat	
+Spider Bite	
+ Spider Mod	
+Spiderbaby	
+Spirit of the Night	
+Spirit Shackles	
+Spirit Sword	
+Spoon Bender	
+Squeezy	
+Stapler	
+Star of Bethlehem	
+Starter Deck	
+Steam Sale	
+Stem Cells	
+Steven	
+Sticky Bombs	
+Stigmata	
+Stop Watch	
+Strange Attractor	
+Strawman	
+Stye	
+Succubus	
+Sulfuric Acid	
+Super Bandage	
+Supper	
+Sworn Protector	
+Synthoil	
+Tarot Cloth	
+Taurus	
+Tech X	
+Tech.5	
+Technology	
+Technology 2	
+Technology Zero	
+Terra	
+The Battery	
+The Belt	
+The Black Bean	
+The Body	
+The Common Cold	
+The Compass	
+The Halo	
+The Inner Eye	
+The Intruder	
+The Ladder	
+The Ludovico Technique	
+The Mark	
+The Mind	
+The Mulligan	
+The Negative	
+The Pact	
+The Parasite	
+The Peeper	
+The Polaroid	
+The Relic	
+The Sad Onion	
+The Small Rock	
+The Soul	
+The Stairway	
+The Swarm	
+The Virus	
+The Wafer	
+The Wiz	
+There's Options	
+Thunder Thighs	
+Tiny Planet	
+Tinytoma	
+TMTRAINER	
+Tooth and Nail	
+Toothpicks	
+Torn Photo	
+Tough Love	
+Toxic Shock	
+Tractor Beam	
+Transcendence	
+Treasure Map	
+Trinity Shield	
+Trisagion	
+Tropicamide	
+Twisted Pair	
+Uranus	
+Vanishing Twin	
+Varicose Veins	
+Vasculitis	
+Vengeful Spirit	
+Venus	
+Virgo	
+Voodoo Head	
+Whore of Babylon	
+Wire Coat Hanger	
+Wooden Spoon	
+Worm Friend	
+X-Ray Vision	
+YO LISTEN!	
+Zodiac
