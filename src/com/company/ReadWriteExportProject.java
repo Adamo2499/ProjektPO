@@ -62,8 +62,28 @@ public class ReadWriteExportProject extends GUI {
         redHearts.setText(loadedParameters[2]);
         soulHearts.setText(loadedParameters[3]);
         blackHearts.setText(loadedParameters[4]);
+        boneHearts.setText(loadedParameters[5]);
+        brokenHearts.setText(loadedParameters[6]);
+        moveSpeed.setText(loadedParameters[7]);
+        damage.setText(loadedParameters[8]);
+        tears.setText(loadedParameters[9]);
+        shotSpeed.setText(loadedParameters[10]);
+        range.setText(loadedParameters[11]);
+        luck.setText(loadedParameters[12]);
+        coins.setText(loadedParameters[13]);
+        bombs.setText(loadedParameters[14]);
+        key.setText(loadedParameters[15]);
+        startingActiveItem.setSelectedItem(loadedParameters[16]);
+        startingPassiveItem1.setSelectedItem(loadedParameters[17]);
+        startingPassiveItem2.setSelectedItem(loadedParameters[18]);
+        startingPassiveItem3.setSelectedItem(loadedParameters[19]);
+        startingPocket.setSelectedItem(loadedParameters[20]);
+        startingTrinket.setSelectedItem(loadedParameters[21]);
+        startingPocket.setSelectedItem(loadedParameters[22]);
+        noRedHealth.setSelected(Boolean.parseBoolean(loadedParameters[23]));
+        canHavePocketItem.setSelected(Boolean.parseBoolean(loadedParameters[24]));
     }
     public void exportCharacterFile(){
-
+        //TODO Write body of exportCharacterFile which will export data from app to .xml file
     }
 }

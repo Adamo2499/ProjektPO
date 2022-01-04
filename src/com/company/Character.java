@@ -49,12 +49,17 @@ public class Character {
         canHavePocketItem = false;
     }
 
+
+
+
     public boolean okHealth(){
-        if(this.HP_LIMIT - this.brokenHeartCounter < this.redHeartCounter+this.soulHeartCounter+this.blackHeartCounter+this.boneHeartCounter){
+        int charMAXHP = HP_LIMIT - this.brokenHeartCounter;
+        int charHP = this.redHeartCounter+this.soulHeartCounter+this.blackHeartCounter+this.boneHeartCounter;
+        if(charHP > charMAXHP || charHP == 0){
             return false;
         }
         return true;
-    }
+        }
 
     @Override
     public String toString(){
