@@ -52,21 +52,7 @@ public class Character {
 
     @Override
     public String toString(){
-        String simpleRedHealth="", simplePocketItem="";
-        if(canHaveRedHealth){
-            simpleRedHealth = "Yes";
-        }
-        else {
-            simpleRedHealth = "No";
-        }
-        if(canHavePocketItem){
-            simplePocketItem = "Yes";
-        }
-        else {
-            simplePocketItem = "No";
-        }
-        String charInfo = "Name: "+this.name+"\nCategory: "+this.category+"\nRed hearts: "+this.redHeartCounter+
-                "\nSoul hearts: "+this.soulHeartCounter+"\nBlack hearts: "+this.blackHeartCounter+"\nBone hearts: "+this.boneHeartCounter+"\nBroken hearts: "+this.brokenHeartCounter+"\nSpeed: "+this.speed+"\nDamage: "+this.damage+"\nTears: "+this.tears+"\nShot Speed: "+this.shotSpeed+"\nRange: "+this.range+"\nLuck: "+this.luck+"\nCoins: "+this.coins+"\nBombs:"+this.bombs+"\nKeys: "+this.keys+"\nStarting active item: "+this.activeItem+"\nStarting passive items: \n"+this.passiveItem1+"\n"+this.passiveItem2+"\n"+this.passiveItem3+"\nPocket: "+this.pocket+"\nTrinket: "+this.trinket+"\nCan have red health: "+simpleRedHealth+"\nCan have Pocket Item: "+simplePocketItem+"\nPocket item: "+this.pocketItem;
-        return charInfo;
+        return "Name: "+this.name+"\nCategory: "+this.category+"\nRed hearts: "+this.redHeartCounter+
+                "\nSoul hearts: "+this.soulHeartCounter+"\nBlack hearts: "+this.blackHeartCounter+"\nBone hearts: "+this.boneHeartCounter+"\nBroken hearts: "+this.brokenHeartCounter+"\nSpeed: "+this.speed+"\nDamage: "+this.damage+"\nTears: "+this.tears+"\nShot Speed: "+this.shotSpeed+"\nRange: "+this.range+"\nLuck: "+this.luck+"\nCoins: "+this.coins+"\nBombs:"+this.bombs+"\nKeys: "+this.keys+"\nStarting active item: "+this.activeItem+"\nStarting passive items: \n"+this.passiveItem1+"\n"+this.passiveItem2+"\n"+this.passiveItem3+"\nPocket: "+this.pocket+"\nTrinket: "+this.trinket+"\nCan have red health: "+canHaveRedHealth+"\nCan have Pocket Item: "+canHavePocketItem+"\nPocket item: "+this.pocketItem;
     }
 }

@@ -320,6 +320,7 @@ public class GUI {
                         redHearts.setEditable(true);
                         rottenHearts.setEditable(true);
                     }
+                    //newCharacter.canHaveRedHealth = noRedHealth.isSelected();
                 }
                 if(e.getSource() == canHavePocketItem){
                     if(canHavePocketItem.isSelected()){
@@ -336,6 +337,7 @@ public class GUI {
                     }
                 }
                 if(e.getSource() == createCharacterButton){
+                    //FIXME Naprawić przypisanie itemu aktywnego, pocketa, trunketu oraz pocket itemu + naprawić sprawdzeniie zanznaczenia checkboxów
                     if(statsOK){
                         JOptionPane.showMessageDialog(null, "Udało się utworzyć postać!");
                         JOptionPane.showMessageDialog(null,newCharacter.toString());
@@ -368,24 +370,34 @@ public class GUI {
 
                         }
                         else {
-                            JOptionPane.showMessageDialog(null,"Proszę wybrać item aktywny!");
-                            statsOK = false;
-                            startingActiveItem.requestFocus();
+                            if(startingActiveItem.getSelectedItem().equals(null)){
+                                JOptionPane.showMessageDialog(null,"Proszę wybrać item aktywny!");
+                                statsOK = false;
+                                startingActiveItem.requestFocus();
+                            }
+                            else {
+                                newCharacter.activeItem = "";
+                            }
                         }
 
                 }
                 if(e.getSource() == startingTrinket){
-                    if(startingTrinket.getSelectedIndex() != 0 || startingTrinket.getSelectedItem().equals(null)){
+                    if(startingTrinket.getSelectedIndex() != 0){
                         newCharacter.trinket = startingTrinket.getSelectedItem().toString();
                     }
                     else {
-                        JOptionPane.showMessageDialog(null,"Proszę wybrać trinket!");
-                        statsOK = false;
-                        startingTrinket.requestFocus();
+                        if(startingTrinket.getSelectedItem().equals(null)){
+                            JOptionPane.showMessageDialog(null,"Proszę wybrać trinket!");
+                            statsOK = false;
+                            startingTrinket.requestFocus();
+                        }
+                        else {
+                            newCharacter.trinket = startingTrinket.getSelectedItem().toString();
+                        }
                     }
                 }
-                if(e.getSource() == startingPassiveItem1 || startingPassiveItem1.getSelectedItem().equals(null)){
-                    if(startingPassiveItem1.getSelectedIndex() == 0){
+                if(e.getSource() == startingPassiveItem1){
+                    if(startingPassiveItem1.getSelectedIndex() == 0 || startingPassiveItem1.getSelectedItem().equals(null)){
                         JOptionPane.showMessageDialog(null,"Proszę wybrać item!");
                     }
                     else {
@@ -424,7 +436,7 @@ public class GUI {
                     }
                 }
                 if(e.getSource() == startingPickups){
-                    if(startingPocket.getSelectedIndex() != 0 || startingPocket.getSelectedItem().equals(null)){
+                    if(startingPocket.getSelectedIndex() != 0 && !startingPocket.getSelectedItem().equals(null)){
                         newCharacter.pocket = startingPocket.getSelectedItem().toString();
                     }
                     else {
