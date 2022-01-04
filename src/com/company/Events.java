@@ -17,14 +17,20 @@ public class Events extends GUI {
 //                if(e.getSource() == category1){
 //                    characterName.setText("");
 //                    characterName.setText(charName);
+//                    newCharacter.name = characterName.getText();
+//                    newCharacter.category = category1.getText();
 //                }
 //                if(e.getSource() == category2){
 //                    characterName.setText("");
 //                    characterName.setText("T. "+charName);
+//                    newCharacter.name = characterName.getText();
+//                    newCharacter.category = category2.getText();
 //                }
 //                if(e.getSource() == category3){
 //                    characterName.setText("");
 //                    characterName.setText("The "+charName);
+//                    newCharacter.name = characterName.getText();
+//                    newCharacter.category = category3.getText();
 //                }
 //                if(e.getSource() == randomTrinket){
 //                    int trinketID = rng.nextInt(1, startingTrinket.getItemCount());
@@ -38,6 +44,10 @@ public class Events extends GUI {
 //                if(e.getSource() == randomPocket){
 //                    int pocketID = rng.nextInt(1, startingPocket.getItemCount());
 //                    startingPocket.setSelectedIndex(pocketID);
+//                }
+//                if(e.getSource() == randomActiveItem){
+//                    int activePocketItemID = rng.nextInt(1, startingActiveItem.getItemCount());
+//                    startingActiveItem.setSelectedIndex(activePocketItemID);
 //                }
 //                if(e.getSource() == cards){
 //                    startingPocket.removeAllItems();
@@ -81,7 +91,7 @@ public class Events extends GUI {
 //                    if(statsOK){
 //                        JOptionPane.showMessageDialog(null, "Udało się utworzyć postać!");
 //                        JOptionPane.showMessageDialog(null,newCharacter.toString());
-//                        //eksport postaci do pliku
+//                        new ReadWriteExportProject().saveProject(newCharacter.toString());
 //                        characterCreator.dispose();
 //                    }
 //                }
@@ -101,6 +111,29 @@ public class Events extends GUI {
 //                    }
 //                    else {
 //                        newCharacter.name = charName;
+//                        redHearts.requestFocus();
+//                    }
+//                }
+//                if(e.getSource() == startingActiveItem){
+//                        if(startingActiveItem.getSelectedIndex() != 0){
+//                            newCharacter.activeItem = startingActiveItem.getSelectedItem().toString();
+//
+//                        }
+//                        else {
+//                            JOptionPane.showMessageDialog(null,"Proszę wybrać item aktywny!");
+//                            statsOK = false;
+//                            startingActiveItem.requestFocus();
+//                        }
+//
+//                }
+//                if(e.getSource() == startingTrinket){
+//                    if(startingTrinket.getSelectedIndex() != 0){
+//                        newCharacter.trinket = startingTrinket.getSelectedItem().toString();
+//                    }
+//                    else {
+//                        JOptionPane.showMessageDialog(null,"Proszę wybrać trinket!");
+//                        statsOK = false;
+//                        startingTrinket.requestFocus();
 //                    }
 //                }
 //                if(e.getSource() == startingPassiveItem1){
@@ -108,29 +141,87 @@ public class Events extends GUI {
 //                        JOptionPane.showMessageDialog(null,"Proszę wybrać item!");
 //                    }
 //                    else {
-//                        if(startingPassiveItem1.getSelectedIndex() == startingPassiveItem2.getSelectedIndex() || startingPassiveItem1.getSelectedIndex() == startingPassiveItem3.getSelectedIndex()){
+//                        if(startingPassiveItem1.getSelectedIndex() == startingPassiveItem2.getSelectedIndex() ||
+//                        startingPassiveItem1.getSelectedIndex() == startingPassiveItem3.getSelectedIndex()){
 //                            JOptionPane.showMessageDialog(null,"Wybierz inny item jako pierwszy item pasywny!");
+//                        }
+//                        else {
+//                            newCharacter.passiveItem1 = startingPassiveItem1.getSelectedItem().toString();
 //                        }
 //                    }
 //                }
 //                if(e.getSource() == startingPassiveItem2){
 //                    if(startingPassiveItem2.getSelectedIndex() == 0){
-//                        JOptionPane.showMessageDialog(null,"Proszę wybrać item!");
+//                        newCharacter.passiveItem2 = "";
 //                    }
 //                    else {
-//                        if(startingPassiveItem2.getSelectedIndex() == startingPassiveItem1.getSelectedIndex() || startingPassiveItem2.getSelectedIndex() == startingPassiveItem3.getSelectedIndex()){
+//                        if(startingPassiveItem2.getSelectedIndex() == startingPassiveItem1.getSelectedIndex() ||
+//                        startingPassiveItem2.getSelectedIndex() == startingPassiveItem3.getSelectedIndex()){
 //                            JOptionPane.showMessageDialog(null,"Wybierz inny item jako drugi item pasywny!");
+//                        }
+//                        else {
+//                            newCharacter.passiveItem2 = startingPassiveItem2.getSelectedItem().toString();
 //                        }
 //                    }
 //                }
 //                if(e.getSource() == startingPassiveItem3){
 //                    if(startingPassiveItem3.getSelectedIndex() == 0){
-//                        JOptionPane.showMessageDialog(null,"Proszę wybrać item!");
+//                        newCharacter.passiveItem3 = "";
 //                    }
 //                    else {
-//                        if(startingPassiveItem3.getSelectedIndex() == startingPassiveItem1.getSelectedIndex() || startingPassiveItem3.getSelectedIndex() == startingPassiveItem2.getSelectedIndex()){
+//                        if(startingPassiveItem3.getSelectedIndex() == startingPassiveItem1.getSelectedIndex() ||
+//                        startingPassiveItem3.getSelectedIndex() == startingPassiveItem2.getSelectedIndex()){
 //                            JOptionPane.showMessageDialog(null,"Wybierz inny item jako trzeci item pasywny!");
 //                        }
+//                        else {
+//                            newCharacter.passiveItem3 = startingPassiveItem3.getSelectedItem().toString();
+//                        }
+//                    }
+//                }
+//                if(e.getSource() == startingPickups){
+//                    if(startingPocket.getSelectedIndex() != 0){
+//                        newCharacter.pocket = startingPocket.getSelectedItem().toString();
+//                    }
+//                    else {
+//                        newCharacter.pocket = "";
+//                    }
+//                }
+//                if(e.getSource() == coins){
+//                    int coinCounter = Integer.parseInt(coins.getText());
+//                    if(coinCounter < 0){
+//                        JOptionPane.showMessageDialog(null,"Nie można mieć mniej niż 0 coinów");
+//                        statsOK = false;
+//                        coins.requestFocus();
+//                    }
+//                    else if(coinCounter > 99 && (!startingPassiveItem1.getSelectedItem().toString().equals("Deep " +
+//                            "Pockets")) || !startingPassiveItem2.getSelectedItem().toString().equals("Deep Pockets") || !startingPassiveItem3.getSelectedItem().toString().equals("Deep Pockets")) {
+//                        JOptionPane.showMessageDialog(null,"Nie można mieć więcej niż 99 coinów");
+//                        statsOK = false;
+//                        coins.requestFocus();
+//                    }
+//                    else {
+//                        newCharacter.coins = coinCounter;
+//                        bombs.requestFocus();
+//                    }
+//                }
+//                if(e.getSource() == bombs){
+//                    int bombCounter = Integer.parseInt(bombs.getText());
+//                    if(bombCounter < 0 || bombCounter > 99){
+//                        JOptionPane.showMessageDialog(null,"Nieprawidłowa ilość bomb");
+//                    }
+//                    else {
+//                        newCharacter.bombs = bombCounter;
+//                        key.requestFocus();
+//                    }
+//                }
+//                if(e.getSource() == key){
+//                    int keysCounter = Integer.parseInt(key.getText());
+//                    if(keysCounter < 0 || keysCounter > 99){
+//                        JOptionPane.showMessageDialog(null,"Nieprawidłowa ilość kluczy");
+//                    }
+//                    else {
+//                        newCharacter.keys = keysCounter;
+//                        moveSpeed.requestFocus();
 //                    }
 //                }
 //                if(e.getSource() == moveSpeed){
@@ -142,6 +233,7 @@ public class Events extends GUI {
 //                    }
 //                    else {
 //                        newCharacter.speed = speedValue;
+//                        tears.requestFocus();
 //                    }
 //                }
 //                if (e.getSource() == damage) {
@@ -153,6 +245,7 @@ public class Events extends GUI {
 //                    }
 //                    else {
 //                        newCharacter.damage = damageValue;
+//                        range.requestFocus();
 //                    }
 //                }
 //                if(e.getSource() == tears){
@@ -164,6 +257,7 @@ public class Events extends GUI {
 //                    }
 //                    else {
 //                        newCharacter.tears = tearsValue;
+//                        damage.requestFocus();
 //                    }
 //                }
 //                if(e.getSource() == shotSpeed){
@@ -175,18 +269,20 @@ public class Events extends GUI {
 //                    }
 //                    else {
 //                        newCharacter.shotSpeed = shotSpeedValue;
+//                        luck.requestFocus();
 //                    }
 //                }
 //                if(e.getSource() == luck){
-//                    double luckValue = Double.parseDouble(luck.getText());
-//                    if(luckValue < -3.0){
-//                        JOptionPane.showMessageDialog(null,"Luck musi być większy niż -3.0");
-//                        statsOK = false;
-//                        luck.requestFocus();
-//                    }
-//                    else {
-//                        newCharacter.luck = luckValue;
-//                    }
+//                        double luckValue = Double.parseDouble(luck.getText());
+//                        if(luckValue < -3.0){
+//                            JOptionPane.showMessageDialog(null,"Luck musi być większy niż -3.0");
+//                            statsOK = false;
+//                            luck.requestFocus();
+//                        }
+//                        else {
+//                            newCharacter.luck = luckValue;
+//                            startingTrinket.requestFocus();
+//                        }
 //                }
 //                if(e.getSource() == range){
 //                    double rangeValue = Double.parseDouble(range.getText());
@@ -197,6 +293,7 @@ public class Events extends GUI {
 //                    }
 //                    else {
 //                        newCharacter.range = rangeValue;
+//                        shotSpeed.requestFocus();
 //                    }
 //                }
 //            }

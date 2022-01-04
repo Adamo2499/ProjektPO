@@ -1,12 +1,10 @@
 package com.company;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 public class ReadWriteExportProject {
     BufferedWriter writer = null;
+    BufferedReader reader;
     public void saveProject(String textToSave){
         try {
             File characterProject = new File(System.getProperty("user.home") + "/Desktop/characterProject" +
@@ -30,5 +28,11 @@ public class ReadWriteExportProject {
                 System.out.println("Error in closing the BufferedWriter"+ex);
             }
         }
+    }
+    public void loadProject(String pathToFile){
+
+    }
+    public void exportCharacterFile(){
+
     }
 }

@@ -94,7 +94,7 @@ public class GUI {
         //lists of items
         Lists listy = new Lists();
         // create a frame
-        characterCreator.setSize(400, 768);
+        characterCreator.setSize(600, 768);
         characterCreator.setLayout(null);
         characterCreator.setVisible(true);
         characterCreator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -127,7 +127,7 @@ public class GUI {
         category1.setBounds(15, 45, 75, 30);
         category2.setBounds(100, 45, 75, 30);
         category3.setBounds(185, 45, 150, 30);
-        startingHealthLabel.setBounds(15,85,100, 30);
+        startingHealthLabel.setBounds(15,85,115, 30);
         redHeartIcon.setBounds(15,120,30,30);
         redHearts.setBounds(50,125,50,20);
         soulHeartIcon.setBounds(15,150,30,30);
@@ -141,11 +141,12 @@ public class GUI {
         brokenHeartIcon.setBounds(15,270,30,30);
         brokenHearts.setBounds(50,275,50,20);
         startingActiveItemLabel.setBounds(150,85,125,30);
-        startingActiveItem.setBounds(150,120,150,20);
+        startingActiveItem.setBounds(150,120,215,20);
+        randomActiveItem.setBounds(275,95,90,20);
         startingPassiveItemsLabel.setBounds(150,150,150,30);
-        startingPassiveItem1.setBounds(150,180,150,20);
-        startingPassiveItem2.setBounds(150,210,150,20);
-        startingPassiveItem3.setBounds(150,240,150,20);
+        startingPassiveItem1.setBounds(150,180,215,20);
+        startingPassiveItem2.setBounds(150,210,215,20);
+        startingPassiveItem3.setBounds(150,240,215,20);
         noRedHealth.setBounds(150,270,200,25);
         canHavePocketItem.setBounds(150,290,200,30);
         startingPickups.setBounds(15,300,100,30);
@@ -170,16 +171,16 @@ public class GUI {
         luck.setBounds(50,605,50,20);
         trinketLabel.setBounds(15,630,100,20);
         startingTrinket.setBounds(15,650,210,20);
-        randomTrinket.setBounds(120,630,100,20);
+        randomTrinket.setBounds(135,630,90,20);
         pocketLabel.setBounds(150,330,100,30);
         cards.setBounds(150, 360, 75, 30);
         pills.setBounds(225, 360, 75, 30);
         runes.setBounds(300, 360, 75, 30);
-        startingPocket.setBounds(150,400,200,25);
-        randomPocket.setBounds(250,330,100,30);
+        startingPocket.setBounds(150,400,215,25);
+        randomPocket.setBounds(250,335,115,20);
         pocketItemLabel.setBounds(150,425,100,30);
-        randomPocketItem.setBounds(250,430,100,20);
-        startingPocketItem.setBounds(150,455,200,30);
+        randomPocketItem.setBounds(250,430,115,20);
+        startingPocketItem.setBounds(150,455,215,20);
         createCharacterButton.setBounds(20,680,200,30);
 
 
@@ -261,7 +262,6 @@ public class GUI {
         startingPocketItem.setVisible(false);
         randomPocketItem.setVisible(false);
 
-
         //action listeners
         String charName = characterName.getText();
         ActionListener al = new ActionListener() {
@@ -286,21 +286,16 @@ public class GUI {
                     newCharacter.category = category3.getText();
                 }
                 if(e.getSource() == randomTrinket){
-                    int trinketID = rng.nextInt(1, startingTrinket.getItemCount());
-                    JOptionPane.showMessageDialog(null,"Trinket ID: "+trinketID);
-                    startingTrinket.setSelectedIndex(trinketID);
+                    listy.setRandomIndex(startingTrinket);
                 }
                 if(e.getSource() == randomActiveItem){
-                    int activeItemID = rng.nextInt(1, startingActiveItem.getItemCount());
-                    startingActiveItem.setSelectedIndex(activeItemID);
+                    listy.setRandomIndex(startingActiveItem);
                 }
                 if(e.getSource() == randomPocket){
-                    int pocketID = rng.nextInt(1, startingPocket.getItemCount());
-                    startingPocket.setSelectedIndex(pocketID);
+                    listy.setRandomIndex(startingPocket);
                 }
-                if(e.getSource() == randomActiveItem){
-                    int activePocketItemID = rng.nextInt(1, startingActiveItem.getItemCount());
-                    startingActiveItem.setSelectedIndex(activePocketItemID);
+                if(e.getSource() == randomPocketItem){
+                    listy.setRandomIndex(startingPocketItem);
                 }
                 if(e.getSource() == cards){
                     startingPocket.removeAllItems();
@@ -380,7 +375,7 @@ public class GUI {
 
                 }
                 if(e.getSource() == startingTrinket){
-                    if(startingTrinket.getSelectedIndex() != 0){
+                    if(startingTrinket.getSelectedIndex() != 0 || startingTrinket.getSelectedItem().equals(null)){
                         newCharacter.trinket = startingTrinket.getSelectedItem().toString();
                     }
                     else {
@@ -389,7 +384,7 @@ public class GUI {
                         startingTrinket.requestFocus();
                     }
                 }
-                if(e.getSource() == startingPassiveItem1){
+                if(e.getSource() == startingPassiveItem1 || startingPassiveItem1.getSelectedItem().equals(null)){
                     if(startingPassiveItem1.getSelectedIndex() == 0){
                         JOptionPane.showMessageDialog(null,"Proszę wybrać item!");
                     }
@@ -403,7 +398,7 @@ public class GUI {
                     }
                 }
                 if(e.getSource() == startingPassiveItem2){
-                    if(startingPassiveItem2.getSelectedIndex() == 0){
+                    if(startingPassiveItem2.getSelectedIndex() == 0 || startingPassiveItem2.getSelectedItem().equals(null)){
                         newCharacter.passiveItem2 = "";
                     }
                     else {
@@ -416,7 +411,7 @@ public class GUI {
                     }
                 }
                 if(e.getSource() == startingPassiveItem3){
-                    if(startingPassiveItem3.getSelectedIndex() == 0){
+                    if(startingPassiveItem3.getSelectedIndex() == 0 || startingPassiveItem3.getSelectedItem().equals(null)){
                         newCharacter.passiveItem3 = "";
                     }
                     else {
@@ -429,7 +424,7 @@ public class GUI {
                     }
                 }
                 if(e.getSource() == startingPickups){
-                    if(startingPocket.getSelectedIndex() != 0){
+                    if(startingPocket.getSelectedIndex() != 0 || startingPocket.getSelectedItem().equals(null)){
                         newCharacter.pocket = startingPocket.getSelectedItem().toString();
                     }
                     else {
@@ -554,6 +549,7 @@ public class GUI {
         randomTrinket.addActionListener(al);
         randomActiveItem.addActionListener(al);
         randomPocket.addActionListener(al);
+        randomPocketItem.addActionListener(al);
         cards.addActionListener(al);
         runes.addActionListener(al);
         pills.addActionListener(al);
@@ -567,5 +563,6 @@ public class GUI {
         moveSpeed.addFocusListener(fl);
         damage.addFocusListener(fl);
         shotSpeed.addFocusListener(fl);
+
     }
 }

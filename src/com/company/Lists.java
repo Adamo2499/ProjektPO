@@ -24,5 +24,8 @@ public class Lists extends GUI {
             }
         }
     }
-
+    public void setRandomIndex(JComboBox comboBoxElement){
+        int randomID = rng.nextInt(1, comboBoxElement.getItemCount());
+        comboBoxElement.setSelectedIndex(randomID);
+    }
 }
