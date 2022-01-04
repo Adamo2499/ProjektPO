@@ -47,12 +47,22 @@ public class Character {
         keys = 0;
         canHaveRedHealth = true;
         canHavePocketItem = false;
+    }
 
+    public boolean okHealth(){
+        if(this.HP_LIMIT - this.brokenHeartCounter < this.redHeartCounter+this.soulHeartCounter+this.blackHeartCounter+this.boneHeartCounter){
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString(){
-        return "Name: "+this.name+"\nCategory: "+this.category+"\nRed hearts: "+this.redHeartCounter+
-                "\nSoul hearts: "+this.soulHeartCounter+"\nBlack hearts: "+this.blackHeartCounter+"\nBone hearts: "+this.boneHeartCounter+"\nBroken hearts: "+this.brokenHeartCounter+"\nSpeed: "+this.speed+"\nDamage: "+this.damage+"\nTears: "+this.tears+"\nShot Speed: "+this.shotSpeed+"\nRange: "+this.range+"\nLuck: "+this.luck+"\nCoins: "+this.coins+"\nBombs:"+this.bombs+"\nKeys: "+this.keys+"\nStarting active item: "+this.activeItem+"\nStarting passive items: \n"+this.passiveItem1+"\n"+this.passiveItem2+"\n"+this.passiveItem3+"\nPocket: "+this.pocket+"\nTrinket: "+this.trinket+"\nCan have red health: "+canHaveRedHealth+"\nCan have Pocket Item: "+canHavePocketItem+"\nPocket item: "+this.pocketItem;
+        String charInfo ="Name: "+this.name+"\nCategory: "+this.category+"\nRed hearts: "+this.redHeartCounter+
+                "\nSoul hearts: "+this.soulHeartCounter+"\nBlack hearts: "+this.blackHeartCounter+"\nBone hearts: "+this.boneHeartCounter+"\nBroken hearts: "+this.brokenHeartCounter+"\nSpeed: "+this.speed+"\nDamage: "+this.damage+"\nTears: "+this.tears+"\nShot Speed: "+this.shotSpeed+"\nRange: "+this.range+"\nLuck: "+this.luck+"\nCoins: "+this.coins+"\nBombs:"+this.bombs+"\nKeys: "+this.keys+"\nStarting active item: "+this.activeItem+"\nStarting passive items: \n"+this.passiveItem1+"\n"+this.passiveItem2+"\n"+this.passiveItem3+"\nPocket: "+this.pocket+"\nTrinket: "+this.trinket+"\nCan have red health: "+canHaveRedHealth+"\nCan have Pocket Item: "+canHavePocketItem;
+        if(canHavePocketItem){
+            charInfo += "\nPocket item: "+this.pocketItem;
+        }
+        return charInfo;
     }
 }

@@ -10,7 +10,7 @@ import javax.swing.*;
 public class Events extends GUI {
     public Events(){
 //        String charName = characterName.getText();
-//        Lists listy = new Lists();
+//        Lists lists = new Lists();
 //        ActionListener al = new ActionListener() {
 //            @Override
 //            public void actionPerformed(ActionEvent e) {
@@ -51,15 +51,15 @@ public class Events extends GUI {
 //                }
 //                if(e.getSource() == cards){
 //                    startingPocket.removeAllItems();
-//                    listy.prepareList(startingPocket,"src/lists/cardsReversesList.txt");
+//                    lists.prepareList(startingPocket,"src/lists/cardsReversesList.txt");
 //                }
 //                if(e.getSource() == pills){
 //                    startingPocket.removeAllItems();
-//                    listy.prepareList(startingPocket,"src/lists/pillsList.txt");
+//                    lists.prepareList(startingPocket,"src/lists/pillsList.txt");
 //                }
 //                if(e.getSource() == runes){
 //                    startingPocket.removeAllItems();
-//                    listy.prepareList(startingPocket,"src/lists/runesSoulStones.txt");
+//                    lists.prepareList(startingPocket,"src/lists/runesSoulStones.txt");
 //                }
 //                if(e.getSource() == noRedHealth){
 //                    if(noRedHealth.isSelected()){

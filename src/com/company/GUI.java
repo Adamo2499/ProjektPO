@@ -14,6 +14,18 @@ public class GUI {
     JFrame characterCreator = new JFrame("Isaac Character Creator");
     Character newCharacter = new Character();
     //create form elements
+    //menu items
+    JMenuBar options = new JMenuBar();
+    JMenu file = new JMenu("File");
+    JMenuItem saveProject = new JMenuItem("Save project");
+    JMenuItem loadProject = new JMenuItem("Load project");
+    JMenuItem exportProject = new JMenuItem("Export project");
+    //FIXME fix adding menubar and elements to it
+    //options.add(file);
+    //file.add(saveProject);
+    //file.add(loadProject);
+    //file.add(exportProject);
+
     //name and category
     JLabel characterNameLabel = new JLabel("Imię postaci: ");
     TextField characterName = new TextField("Who am I?");
@@ -92,12 +104,13 @@ public class GUI {
 
     public void createGUI() {
         //lists of items
-        Lists listy = new Lists();
+        Lists lists = new Lists();
         // create a frame
         characterCreator.setSize(600, 768);
         characterCreator.setLayout(null);
         characterCreator.setVisible(true);
         characterCreator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        characterCreator.setJMenuBar(options);
 
 
         //set frame icon
@@ -113,13 +126,13 @@ public class GUI {
         startingTrinket.addItem("");
         startingPocket.addItem("");
         startingPocketItem.addItem("");
-        listy.prepareList(startingTrinket,"src/lists/trinketsList.txt");
-        listy.prepareList(startingActiveItem,"src/lists/activeItemsList.txt");
-        listy.prepareList(startingPocket,"src/lists/cardsReversesList.txt");
-        listy.prepareList(startingPassiveItem1,"src/lists/passiveItemsList.txt");
-        listy.prepareList(startingPassiveItem2,"src/lists/passiveItemsList.txt");
-        listy.prepareList(startingPassiveItem3,"src/lists/passiveItemsList.txt");
-        listy.prepareList(startingPocketItem, "src/lists/activeItemsList.txt");
+        lists.prepareList(startingTrinket,"src/lists/trinketsList.txt");
+        lists.prepareList(startingActiveItem,"src/lists/activeItemsList.txt");
+        lists.prepareList(startingPocket,"src/lists/cardsReversesList.txt");
+        lists.prepareList(startingPassiveItem1,"src/lists/passiveItemsList.txt");
+        lists.prepareList(startingPassiveItem2,"src/lists/passiveItemsList.txt");
+        lists.prepareList(startingPassiveItem3,"src/lists/passiveItemsList.txt");
+        lists.prepareList(startingPocketItem, "src/lists/activeItemsList.txt");
 
         //set sizes of elements
         characterNameLabel.setBounds(15, -35, 125, 100);
@@ -286,28 +299,28 @@ public class GUI {
                     newCharacter.category = category3.getText();
                 }
                 if(e.getSource() == randomTrinket){
-                    listy.setRandomIndex(startingTrinket);
+                    lists.setRandomIndex(startingTrinket);
                 }
                 if(e.getSource() == randomActiveItem){
-                    listy.setRandomIndex(startingActiveItem);
+                    lists.setRandomIndex(startingActiveItem);
                 }
                 if(e.getSource() == randomPocket){
-                    listy.setRandomIndex(startingPocket);
+                    lists.setRandomIndex(startingPocket);
                 }
                 if(e.getSource() == randomPocketItem){
-                    listy.setRandomIndex(startingPocketItem);
+                    lists.setRandomIndex(startingPocketItem);
                 }
                 if(e.getSource() == cards){
                     startingPocket.removeAllItems();
-                    listy.prepareList(startingPocket,"src/lists/cardsReversesList.txt");
+                    lists.prepareList(startingPocket,"src/lists/cardsReversesList.txt");
                 }
                 if(e.getSource() == pills){
                     startingPocket.removeAllItems();
-                    listy.prepareList(startingPocket,"src/lists/pillsList.txt");
+                    lists.prepareList(startingPocket,"src/lists/pillsList.txt");
                 }
                 if(e.getSource() == runes){
                     startingPocket.removeAllItems();
-                    listy.prepareList(startingPocket,"src/lists/runesSoulStones.txt");
+                    lists.prepareList(startingPocket,"src/lists/runesSoulStones.txt");
                 }
                 if(e.getSource() == noRedHealth){
                     if(noRedHealth.isSelected()){
@@ -320,7 +333,7 @@ public class GUI {
                         redHearts.setEditable(true);
                         rottenHearts.setEditable(true);
                     }
-                    //newCharacter.canHaveRedHealth = noRedHealth.isSelected();
+                    newCharacter.canHaveRedHealth = noRedHealth.isSelected();
                 }
                 if(e.getSource() == canHavePocketItem){
                     if(canHavePocketItem.isSelected()){
@@ -335,14 +348,19 @@ public class GUI {
                         startingPocketItem.setVisible(false);
                         randomPocketItem.setVisible(false);
                     }
+                    newCharacter.canHavePocketItem = canHavePocketItem.isSelected();
                 }
                 if(e.getSource() == createCharacterButton){
                     //FIXME Naprawić przypisanie itemu aktywnego, pocketa, trunketu oraz pocket itemu + naprawić sprawdzeniie zanznaczenia checkboxów
-                    if(statsOK){
+                    if(statsOK && newCharacter.okHealth()){
                         JOptionPane.showMessageDialog(null, "Udało się utworzyć postać!");
-                        JOptionPane.showMessageDialog(null,newCharacter.toString());
+                        JOptionPane.showMessageDialog(null,"Podsumowanie: \n"+newCharacter.toString());
                         new ReadWriteExportProject().saveProject(newCharacter.toString());
                         characterCreator.dispose();
+                    }
+                    //FIXME fix okHealth function
+                    else if(!newCharacter.okHealth()){
+                        JOptionPane.showMessageDialog(null,"Nieprawidłowa ilość serc!");
                     }
                 }
             }
