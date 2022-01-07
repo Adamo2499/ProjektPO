@@ -38,6 +38,8 @@ public class ReadWriteExportProject extends GUI {
             String line = reader.readLine();
             while (line != null){
                 loadedParameters[index] = line.split(": ")[1];
+                line = reader.readLine();
+                index++;
             }
             reader.close();
 
@@ -49,6 +51,7 @@ public class ReadWriteExportProject extends GUI {
             }
         }
         //send values to aplication
+        // FIXME naprawić NullPointException while loading project
         characterName.setText(loadedParameters[0]);
         if(loadedParameters[1].equalsIgnoreCase("normal")){
             category1.setSelected(true);

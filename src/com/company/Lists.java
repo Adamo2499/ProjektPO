@@ -5,7 +5,6 @@ import java.io.*;
 
 public class Lists extends GUI {
     BufferedReader reader;
-
     public void prepareList(JComboBox comboBoxElement, String listPath){
         try {
             reader = new BufferedReader(new FileReader(listPath));

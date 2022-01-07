@@ -318,8 +318,6 @@ public class Events extends GUI {
 //        damage.addFocusListener(fl);
 //        shotSpeed.addFocusListener(fl);
     }
-
-    //static void checkHealth(){} //sprawdzenie czy zdrowie postaci jest mniejsze lub równe limitowi
     public static void  main(String[] args){
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {

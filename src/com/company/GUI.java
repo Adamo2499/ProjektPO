@@ -7,10 +7,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.io.File;
-import java.text.ParseException;
 import java.util.Random;
 
-public class GUI {
+public class GUI implements com.company.charactersList {
     boolean statsOK = true;
     JFrame characterCreator = new JFrame("Isaac Character Creator");
     Character newCharacter = new Character();
@@ -23,7 +22,7 @@ public class GUI {
     JMenuItem exportProject = new JMenuItem("Export project");
     //name and category
     JLabel characterNameLabel = new JLabel("Imię postaci: ");
-    TextField characterName = new TextField("Who am I?");
+    TextField characterName = new TextField("");
     ButtonGroup characterCategory = new ButtonGroup();
     JRadioButton category1 = new JRadioButton("Normal", true);
     JRadioButton category2 = new JRadioButton("Tainted");
@@ -96,9 +95,10 @@ public class GUI {
     JComboBox startingPocketItem = new JComboBox();
     JButton randomPocketItem = new JButton("Random");
     static Random rng = new Random();
-    Lists lists = new Lists();
+
 
     public void createGUI() {
+        Lists lists = new Lists();
         // create a frame
         characterCreator.setSize(600, 768);
         characterCreator.setLayout(null);
@@ -106,20 +106,26 @@ public class GUI {
         characterCreator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         characterCreator.setJMenuBar(options);
 
-
         //set frame icon
 
         ImageIcon isaacIcon = new ImageIcon("src/icons/Character_Isaac_icon.png");
         characterCreator.setIconImage(isaacIcon.getImage());
 
         //add items to comboboxes
-        startingPassiveItem1.addItem("");
-        startingPassiveItem2.addItem("");
-        startingPassiveItem3.addItem("");
-        startingActiveItem.addItem("");
-        startingTrinket.addItem("");
-        startingPocket.addItem("");
-        startingPocketItem.addItem("");
+        startingPassiveItem1.addItem("No item");
+        startingPassiveItem1.setSelectedIndex(0);
+        startingPassiveItem2.addItem("No item");
+        startingPassiveItem2.setSelectedIndex(0);
+        startingPassiveItem3.addItem("No item");
+        startingPassiveItem3.setSelectedIndex(0);
+        startingActiveItem.addItem("No item");
+        startingActiveItem.setSelectedIndex(0);
+        startingTrinket.addItem("No Trinket");
+        startingTrinket.setSelectedIndex(0);
+        startingPocket.addItem("No Pocket");
+        startingPocket.setSelectedItem(0);
+        startingPocketItem.addItem("No Pocket Item");
+        startingPocketItem.setSelectedIndex(0);
         lists.prepareList(startingPassiveItem1, "src/lists/passiveItemsList.txt");
         lists.prepareList(startingPassiveItem2, "src/lists/passiveItemsList.txt");
         lists.prepareList(startingPassiveItem3, "src/lists/passiveItemsList.txt");
@@ -272,11 +278,10 @@ public class GUI {
         pocketItemLabel.setVisible(false);
         startingPocketItem.setVisible(false);
         randomPocketItem.setVisible(false);
-        //TODO extend function checkForm to check stats before create character
-        //checking form
-//        public boolean checkForm() {
-//            return statsOK;
-//        }
+
+        //disable button
+        //createCharacterButton.setEnabled(false);
+        createCharacterButton.setEnabled(true);
 
         //action listeners
         String charName = characterName.getText();
@@ -373,17 +378,12 @@ public class GUI {
                     }
                 }
                 if (e.getSource() == createCharacterButton) {
-                    //newCharacter.checkForm();
                     //FIXME Naprawić przypisanie itemu aktywnego, pocketa, trunketu oraz pocket itemu + naprawić sprawdzeniie zanznaczenia checkboxów
-                    if (statsOK && newCharacter.okHealth()) {
+                    if (new CheckForm().formOK()) {
                         JOptionPane.showMessageDialog(null, "Udało się utworzyć postać!");
                         JOptionPane.showMessageDialog(null, "Podsumowanie: \n" + newCharacter.toString());
                         new ReadWriteExportProject().saveProject(newCharacter.toString());
                         characterCreator.dispose();
-                    }
-                    //FIXME fix okHealth function
-                    else if (!newCharacter.okHealth()) {
-                        JOptionPane.showMessageDialog(null, "Nieprawidłowa ilość serc!");
                     }
                 }
             }
@@ -396,29 +396,8 @@ public class GUI {
 
             @Override
             public void focusLost(FocusEvent e) {
-                if (e.getSource() == characterName) {
-                    if (charName.contains("Who am I?")) {
-                        JOptionPane.showMessageDialog(null, "Proszę nadać postaci imię");
-                        statsOK = false;
-                        characterName.requestFocus();
-                    } else {
-                        newCharacter.name = charName;
-                        redHearts.requestFocus();
-                    }
-                }
                 if (e.getSource() == startingActiveItem) {
-                    if (startingActiveItem.getSelectedIndex() != 0) {
-                        newCharacter.activeItem = startingActiveItem.getSelectedItem().toString();
 
-                    } else {
-                        if (startingActiveItem.getSelectedItem().equals(null)) {
-                            JOptionPane.showMessageDialog(null, "Proszę wybrać item aktywny!");
-                            statsOK = false;
-                            startingActiveItem.requestFocus();
-                        } else {
-                            newCharacter.activeItem = "";
-                        }
-                    }
 
                 }
                 if (e.getSource() == startingTrinket) {
@@ -431,6 +410,7 @@ public class GUI {
                             startingTrinket.requestFocus();
                         } else {
                             newCharacter.trinket = startingTrinket.getSelectedItem().toString();
+                            createCharacterButton.setEnabled(true);
                         }
                     }
                 }
@@ -604,6 +584,5 @@ public class GUI {
         coins.addFocusListener(fl);
         bombs.addFocusListener(fl);
         key.addFocusListener(fl);
-
     }
 }
