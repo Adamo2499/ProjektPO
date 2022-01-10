@@ -103,6 +103,7 @@ public class GUI implements com.company.charactersList {
         characterCreator.setSize(600, 768);
         characterCreator.setLayout(null);
         characterCreator.setVisible(true);
+        characterCreator.setResizable(false);
         characterCreator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         characterCreator.setJMenuBar(options);
 
@@ -284,39 +285,39 @@ public class GUI implements com.company.charactersList {
         createCharacterButton.setEnabled(true);
 
         //action listeners
-        String charName = characterName.getText();
+//        String charName = characterName.getText();
         ActionListener al = new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == category1) {
-                    characterName.setText("");
-                    characterName.setText(charName);
                     newCharacter.name = characterName.getText();
                     newCharacter.category = category1.getText();
                 }
                 if (e.getSource() == category2) {
-                    characterName.setText("");
-                    characterName.setText("T. " + charName);
-                    newCharacter.name = characterName.getText();
+                    newCharacter.name = "Tainted "+characterName.getText();
                     newCharacter.category = category2.getText();
+
                 }
                 if (e.getSource() == category3) {
-                    characterName.setText("");
-                    characterName.setText("The " + charName);
-                    newCharacter.name = characterName.getText();
+                    newCharacter.name = "The "+characterName.getText();
                     newCharacter.category = category3.getText();
                 }
                 if (e.getSource() == randomTrinket) {
                     lists.setRandomIndex(startingTrinket);
+                    newCharacter.trinket = startingTrinket.getSelectedItem().toString();
                 }
                 if (e.getSource() == randomActiveItem) {
                     lists.setRandomIndex(startingActiveItem);
+                    newCharacter.activeItem = startingActiveItem.getSelectedItem().toString();
                 }
                 if (e.getSource() == randomPocket) {
                     lists.setRandomIndex(startingPocket);
+                    newCharacter.pocket = startingPocket.getSelectedItem().toString();
                 }
                 if (e.getSource() == randomPocketItem) {
                     lists.setRandomIndex(startingPocketItem);
+                    newCharacter.pocketItem = startingPocketItem.getSelectedItem().toString();
                 }
                 if (e.getSource() == cards) {
                     startingPocket.removeAllItems();
@@ -379,7 +380,7 @@ public class GUI implements com.company.charactersList {
                 }
                 if (e.getSource() == createCharacterButton) {
                     //FIXME Naprawić przypisanie itemu aktywnego, pocketa, trunketu oraz pocket itemu + naprawić sprawdzeniie zanznaczenia checkboxów
-                    if (new CheckForm().formOK()) {
+                    if (statsOK) {
                         JOptionPane.showMessageDialog(null, "Udało się utworzyć postać!");
                         JOptionPane.showMessageDialog(null, "Podsumowanie: \n" + newCharacter.toString());
                         new ReadWriteExportProject().saveProject(newCharacter.toString());
@@ -397,13 +398,15 @@ public class GUI implements com.company.charactersList {
             @Override
             public void focusLost(FocusEvent e) {
                 if (e.getSource() == startingActiveItem) {
-
-
+                    if(startingActiveItem.getSelectedItem().equals(null)){
+                        JOptionPane.showMessageDialog(null, "Proszę wybrać item aktywny!");
+                        startingActiveItem.requestFocus();
+                    }
+                    else {
+                        newCharacter.activeItem = startingActiveItem.getSelectedItem().toString();
+                    }
                 }
                 if (e.getSource() == startingTrinket) {
-                    if (startingTrinket.getSelectedIndex() != 0) {
-                        newCharacter.trinket = startingTrinket.getSelectedItem().toString();
-                    } else {
                         if (startingTrinket.getSelectedItem().equals(null)) {
                             JOptionPane.showMessageDialog(null, "Proszę wybrać trinket!");
                             statsOK = false;
@@ -411,9 +414,8 @@ public class GUI implements com.company.charactersList {
                         } else {
                             newCharacter.trinket = startingTrinket.getSelectedItem().toString();
                             createCharacterButton.setEnabled(true);
+                            }
                         }
-                    }
-                }
                 if (e.getSource() == startingPassiveItem1) {
                     if (startingPassiveItem1.getSelectedIndex() == 0 || startingPassiveItem1.getSelectedItem().equals(null)) {
                         JOptionPane.showMessageDialog(null, "Proszę wybrać item!");
@@ -448,10 +450,8 @@ public class GUI implements com.company.charactersList {
                     }
                 }
                 if (e.getSource() == startingPickups) {
-                    if (startingPocket.getSelectedIndex() != 0 && !startingPocket.getSelectedItem().equals(null)) {
+                    if (!startingPocket.getSelectedItem().equals(null)) {
                         newCharacter.pocket = startingPocket.getSelectedItem().toString();
-                    } else {
-                        newCharacter.pocket = "";
                     }
                 }
                 if (e.getSource() == coins) {
@@ -490,8 +490,8 @@ public class GUI implements com.company.charactersList {
                 }
                 if (e.getSource() == moveSpeed) {
                     double speedValue = Double.parseDouble(moveSpeed.getText());
-                    if (speedValue < 0.60 || speedValue > 2.00) {
-                        JOptionPane.showMessageDialog(null, "Speed have to be between 0.6-2.0");
+                    if (speedValue < 0.10 || speedValue > 2.00) {
+                        JOptionPane.showMessageDialog(null, "Speed have to be between 0.1-2.0");
                         statsOK = false;
                         moveSpeed.requestFocus();
                     } else {

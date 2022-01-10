@@ -318,6 +318,17 @@ public class Events extends GUI {
 //        damage.addFocusListener(fl);
 //        shotSpeed.addFocusListener(fl);
     }
+    public boolean okHealth(){
+        int charMAXHP = newCharacter.HP_LIMIT - newCharacter.brokenHeartCounter;
+        int charHP = newCharacter.redHeartCounter+newCharacter.soulHeartCounter+newCharacter.blackHeartCounter+newCharacter.boneHeartCounter;
+        if(charHP > charMAXHP || charHP == 0){
+            return false;
+        }
+        else {
+            return true;
+        }
+
+    }
     public static void  main(String[] args){
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
