@@ -1,4 +1,4 @@
-# ProjektPO - Chracter Creator for The Binding of Isaac: Repentance
+# ProjektPO - Character Creator for The Binding of Isaac: Repentance
 Final project for OOP course in Gdynia Maritime University &amp; character creator for The Binding of Isaac: Repentance
 
 To run this project, you have to download:
