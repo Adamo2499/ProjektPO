@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.Random;
 
@@ -379,7 +380,11 @@ public class GUI {
                             JOptionPane.showMessageDialog(null,"Nie wybrano żadnego pliku");
                         }
                         else {
-                            JOptionPane.showMessageDialog(null, "Wybrano plik: "+loadedProjectFile);
+                            try {
+                                JOptionPane.showMessageDialog(null, "Wybrano plik: "+loadedProjectFile.getCanonicalPath());
+                            } catch (IOException ex) {
+                                ex.printStackTrace();
+                            }
                             String loadedProjectPath = loadedProjectFile.getAbsolutePath();
                             new ReadWriteExportProject().loadProject(loadedProjectPath);
                         }

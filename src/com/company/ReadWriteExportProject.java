@@ -8,8 +8,7 @@ public class ReadWriteExportProject extends GUI {
     BufferedReader reader;
     public void saveProject(String textToSave){
         try {
-            File characterProject = new File(System.getProperty("user.home") + "/Desktop/characterProject" +
-                    ".txt");
+            File characterProject = new File(System.getProperty("user.home") + "/Desktop/characterProject.txt");
             if(!characterProject.exists()){
                 characterProject.createNewFile();
             }
@@ -22,10 +21,9 @@ public class ReadWriteExportProject extends GUI {
         }
         finally
         {
-            try{
-                if(writer!=null)
-                    writer.close();
-            }catch(Exception ex){
+            try {
+                if(writer!=null) writer.close();
+            } catch(Exception ex){
                 System.out.println("Error in closing the BufferedWriter"+ex);
             }
         }
@@ -87,13 +85,12 @@ public class ReadWriteExportProject extends GUI {
             startingPocket.setSelectedItem(loadedParameters[22]);
             noRedHealth.setSelected(Boolean.parseBoolean(loadedParameters[23]));
             canHavePocketItem.setSelected(Boolean.parseBoolean(loadedParameters[24]));
+            characterCreator.revalidate();
+            characterCreator.repaint();
         }
         catch (NullPointerException nExp){
             nExp.printStackTrace();
         }
 
-    }
-    public void exportCharacterFile(){
-        //TODO Write body of exportCharacterFile which will export data from app to .xml file
     }
 }
