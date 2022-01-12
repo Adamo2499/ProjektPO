@@ -46,8 +46,8 @@ public class ReadWriteExportProject extends GUI {
 
         }
         catch (Exception e){
-            //IOException
-            if(e instanceof IOException){
+            //Exceptions
+            if(e instanceof IOException || e instanceof FileNotFoundException){
                 e.printStackTrace();
             }
         }

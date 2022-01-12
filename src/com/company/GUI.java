@@ -7,19 +7,22 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.io.File;
+import java.text.ParseException;
 import java.util.Random;
 
-public class GUI implements com.company.charactersList {
+public class GUI {
+    //external elements
     boolean statsOK = true;
     JFrame characterCreator = new JFrame("Isaac Character Creator");
     Character newCharacter = new Character();
+    //ReadWriteExportProject rweProject = new ReadWriteExportProject();
     //create form elements
     //menu items
     JMenuBar options = new JMenuBar();
     JMenu file = new JMenu("File");
     JMenuItem saveProject = new JMenuItem("Save project");
     JMenuItem loadProject = new JMenuItem("Load project");
-    JMenuItem exportProject = new JMenuItem("Export project");
+    //JMenuItem exportProject = new JMenuItem("Export project");
     //name and category
     JLabel characterNameLabel = new JLabel("Imię postaci: ");
     TextField characterName = new TextField("");
@@ -273,19 +276,16 @@ public class GUI implements com.company.charactersList {
         options.add(file);
         file.add(saveProject);
         file.add(loadProject);
-        file.add(exportProject);
+        //file.add(exportProject);
 
         //hide pocket item elements
         pocketItemLabel.setVisible(false);
         startingPocketItem.setVisible(false);
         randomPocketItem.setVisible(false);
 
-        //disable button
-        //createCharacterButton.setEnabled(false);
         createCharacterButton.setEnabled(true);
 
         //action listeners
-//        String charName = characterName.getText();
         ActionListener al = new ActionListener() {
 
             @Override
@@ -297,7 +297,6 @@ public class GUI implements com.company.charactersList {
                 if (e.getSource() == category2) {
                     newCharacter.name = "Tainted "+characterName.getText();
                     newCharacter.category = category2.getText();
-
                 }
                 if (e.getSource() == category3) {
                     newCharacter.name = "The "+characterName.getText();
@@ -361,6 +360,7 @@ public class GUI implements com.company.charactersList {
                     int returnValue = JOptionPane.showConfirmDialog(null, "Zapisać projekt?", "Zapisz projekt", JOptionPane.YES_NO_OPTION);
                     if (returnValue == JOptionPane.YES_OPTION) {
                         new ReadWriteExportProject().saveProject(newCharacter.toString());
+                        JOptionPane.showMessageDialog(null,"Lokalizacja pliku z projektem: "+System.getProperty("user.home") + "/Desktop/characterProject.txt");
                     } else {
                         characterName.requestFocus();
                     }
@@ -369,9 +369,18 @@ public class GUI implements com.company.charactersList {
                 if (e.getSource() == loadProject) {
                     int returnValue = JOptionPane.showConfirmDialog(null, "Wczytać projekt?", "Załaduj projekt", JOptionPane.YES_NO_OPTION);
                     if (returnValue == JOptionPane.YES_OPTION) {
-                        String loadedProjectPath = JOptionPane.showInputDialog(null, "Podaj ścieżkę do pliku: ");
-                        File loadedProject = new File(loadedProjectPath);
-                        if (loadedProject.exists()) {
+                        FileDialog loadProject = new FileDialog(characterCreator,"Wczytaj plik: ",FileDialog.LOAD);
+                        loadProject.setDirectory(System.getProperty("user.home"));
+                        loadProject.setFile("*.txt");
+                        loadProject.setVisible(true);
+                        String loadedProject = loadProject.getFile();
+                        File loadedProjectFile = new File(loadedProject);
+                        if(loadedProjectFile.equals(null)){
+                            JOptionPane.showMessageDialog(null,"Nie wybrano żadnego pliku");
+                        }
+                        else {
+                            JOptionPane.showMessageDialog(null, "Wybrano plik: "+loadedProjectFile);
+                            String loadedProjectPath = loadedProjectFile.getAbsolutePath();
                             new ReadWriteExportProject().loadProject(loadedProjectPath);
                         }
                     } else {
@@ -380,11 +389,15 @@ public class GUI implements com.company.charactersList {
                 }
                 if (e.getSource() == createCharacterButton) {
                     //FIXME Naprawić przypisanie itemu aktywnego, pocketa, trunketu oraz pocket itemu + naprawić sprawdzeniie zanznaczenia checkboxów
-                    if (statsOK) {
+                    if (statsOK && okHealth()) {
                         JOptionPane.showMessageDialog(null, "Udało się utworzyć postać!");
-                        JOptionPane.showMessageDialog(null, "Podsumowanie: \n" + newCharacter.toString());
+                        newCharacter.showEntities();
                         new ReadWriteExportProject().saveProject(newCharacter.toString());
                         characterCreator.dispose();
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(null,"Nie wszystkie statystyki są niepoprawnie ustawione!");
+                        characterName.requestFocus();
                     }
                 }
             }
@@ -392,15 +405,13 @@ public class GUI implements com.company.charactersList {
 
         FocusListener fl = new FocusListener() {
             @Override
-            public void focusGained(FocusEvent e) {
-            }
+            public void focusGained(FocusEvent e) {}
 
             @Override
             public void focusLost(FocusEvent e) {
                 if (e.getSource() == startingActiveItem) {
                     if(startingActiveItem.getSelectedItem().equals(null)){
-                        JOptionPane.showMessageDialog(null, "Proszę wybrać item aktywny!");
-                        startingActiveItem.requestFocus();
+                        newCharacter.activeItem = startingActiveItem.getItemAt(0).toString();
                     }
                     else {
                         newCharacter.activeItem = startingActiveItem.getSelectedItem().toString();
@@ -408,17 +419,16 @@ public class GUI implements com.company.charactersList {
                 }
                 if (e.getSource() == startingTrinket) {
                         if (startingTrinket.getSelectedItem().equals(null)) {
-                            JOptionPane.showMessageDialog(null, "Proszę wybrać trinket!");
                             statsOK = false;
+                            JOptionPane.showMessageDialog(null, "Proszę wybrać trinket!");
                             startingTrinket.requestFocus();
                         } else {
                             newCharacter.trinket = startingTrinket.getSelectedItem().toString();
-                            createCharacterButton.setEnabled(true);
                             }
                         }
                 if (e.getSource() == startingPassiveItem1) {
-                    if (startingPassiveItem1.getSelectedIndex() == 0 || startingPassiveItem1.getSelectedItem().equals(null)) {
-                        JOptionPane.showMessageDialog(null, "Proszę wybrać item!");
+                    if (startingPassiveItem1.getSelectedItem().equals(null)) {
+                        newCharacter.passiveItem1 = startingPassiveItem1.getItemAt(0).toString();
                     } else {
                         if (startingPassiveItem1.getSelectedIndex() == startingPassiveItem2.getSelectedIndex() || startingPassiveItem1.getSelectedIndex() == startingPassiveItem3.getSelectedIndex()) {
                             JOptionPane.showMessageDialog(null, "Wybierz inny item jako pierwszy item pasywny!");
@@ -428,8 +438,8 @@ public class GUI implements com.company.charactersList {
                     }
                 }
                 if (e.getSource() == startingPassiveItem2) {
-                    if (startingPassiveItem2.getSelectedIndex() == 0 || startingPassiveItem2.getSelectedItem().equals(null)) {
-                        newCharacter.passiveItem2 = "";
+                    if (startingPassiveItem2.getSelectedItem().equals(null)) {
+                        newCharacter.passiveItem2 = startingPassiveItem2.getItemAt(0).toString();
                     } else {
                         if (startingPassiveItem2.getSelectedIndex() == startingPassiveItem1.getSelectedIndex() || startingPassiveItem2.getSelectedIndex() == startingPassiveItem3.getSelectedIndex()) {
                             JOptionPane.showMessageDialog(null, "Wybierz inny item jako drugi item pasywny!");
@@ -440,7 +450,7 @@ public class GUI implements com.company.charactersList {
                 }
                 if (e.getSource() == startingPassiveItem3) {
                     if (startingPassiveItem3.getSelectedIndex() == 0 || startingPassiveItem3.getSelectedItem().equals(null)) {
-                        newCharacter.passiveItem3 = "";
+                        newCharacter.passiveItem3 = startingPassiveItem3.getItemAt(0).toString();
                     } else {
                         if (startingPassiveItem3.getSelectedIndex() == startingPassiveItem1.getSelectedIndex() || startingPassiveItem3.getSelectedIndex() == startingPassiveItem2.getSelectedIndex()) {
                             JOptionPane.showMessageDialog(null, "Wybierz inny item jako trzeci item pasywny!");
@@ -455,38 +465,52 @@ public class GUI implements com.company.charactersList {
                     }
                 }
                 if (e.getSource() == coins) {
+                    if(coins.getText().equals(null)){
+                        newCharacter.coins = 0;
+                    }
                     int coinCounter = Integer.parseInt(coins.getText());
-                    if (coinCounter < 0) {
-                        JOptionPane.showMessageDialog(null, "Nie można mieć mniej niż 0 coinów");
+                    if (coinCounter < 0 || coinCounter>999) {
+                        JOptionPane.showMessageDialog(null, "Nieprawidłowa ilość coinów");
                         statsOK = false;
                         coins.requestFocus();
-                    } else if (coinCounter > 99 && (!startingPassiveItem1.getSelectedItem().toString().equals("Deep " +
+                    } else if (coinCounter > 99 && coinCounter <= 999 && (!startingPassiveItem1.getSelectedItem().toString().equals("Deep " +
                             "Pockets")) || !startingPassiveItem2.getSelectedItem().toString().equals("Deep Pockets") || !startingPassiveItem3.getSelectedItem().toString().equals("Deep Pockets")) {
                         JOptionPane.showMessageDialog(null, "Nie można mieć więcej niż 99 coinów");
                         statsOK = false;
                         coins.requestFocus();
                     } else {
                         newCharacter.coins = coinCounter;
-                        bombs.requestFocus();
+
                     }
+                    bombs.requestFocus();
                 }
                 if (e.getSource() == bombs) {
+                    if(bombs.getText().equals(null)){
+                        newCharacter.bombs = 0;
+                    }
                     int bombCounter = Integer.parseInt(bombs.getText());
                     if (bombCounter < 0 || bombCounter > 99) {
+                        statsOK = false;
                         JOptionPane.showMessageDialog(null, "Nieprawidłowa ilość bomb");
+                        bombs.requestFocus();
                     } else {
                         newCharacter.bombs = bombCounter;
-                        key.requestFocus();
                     }
+                    key.requestFocus();
                 }
                 if (e.getSource() == key) {
+                    if(key.getText().equals(null)){
+                        newCharacter.keys = 0;
+                    }
                     int keysCounter = Integer.parseInt(key.getText());
                     if (keysCounter < 0 || keysCounter > 99) {
+                        statsOK=false;
                         JOptionPane.showMessageDialog(null, "Nieprawidłowa ilość kluczy");
+                        key.requestFocus();
                     } else {
                         newCharacter.keys = keysCounter;
-                        moveSpeed.requestFocus();
                     }
+                    moveSpeed.requestFocus();
                 }
                 if (e.getSource() == moveSpeed) {
                     double speedValue = Double.parseDouble(moveSpeed.getText());
@@ -496,7 +520,19 @@ public class GUI implements com.company.charactersList {
                         moveSpeed.requestFocus();
                     } else {
                         newCharacter.speed = speedValue;
+                    }
+                    tears.requestFocus();
+
+                }
+                if (e.getSource() == tears) {
+                    double tearsValue = Double.parseDouble(tears.getText());
+                    if (tearsValue < 0.5 || tearsValue > 5.0) {
+                        JOptionPane.showMessageDialog(null, "Tears have to be between 0.5-5.0!");
+                        statsOK = false;
                         tears.requestFocus();
+                    } else {
+                        newCharacter.tears = tearsValue;
+                        damage.requestFocus();
                     }
                 }
                 if (e.getSource() == damage) {
@@ -510,15 +546,15 @@ public class GUI implements com.company.charactersList {
                         range.requestFocus();
                     }
                 }
-                if (e.getSource() == tears) {
-                    double tearsValue = Double.parseDouble(tears.getText());
-                    if (tearsValue < 0.5 || tearsValue > 5.0) {
-                        JOptionPane.showMessageDialog(null, "Tears have to be between 0.5-5.0!");
+                if (e.getSource() == range) {
+                    double rangeValue = Double.parseDouble(range.getText());
+                    if (rangeValue < 1.0) {
+                        JOptionPane.showMessageDialog(null, "Range musi być większy niż 1.0");
                         statsOK = false;
-                        tears.requestFocus();
+                        range.requestFocus();
                     } else {
-                        newCharacter.tears = tearsValue;
-                        damage.requestFocus();
+                        newCharacter.range = rangeValue;
+                        shotSpeed.requestFocus();
                     }
                 }
                 if (e.getSource() == shotSpeed) {
@@ -543,17 +579,7 @@ public class GUI implements com.company.charactersList {
                         startingTrinket.requestFocus();
                     }
                 }
-                if (e.getSource() == range) {
-                    double rangeValue = Double.parseDouble(range.getText());
-                    if (rangeValue < 1.0) {
-                        JOptionPane.showMessageDialog(null, "Range musi być większy niż 1.0");
-                        statsOK = false;
-                        range.requestFocus();
-                    } else {
-                        newCharacter.range = rangeValue;
-                        shotSpeed.requestFocus();
-                    }
-                }
+
             }
         };
         category1.addActionListener(al);
@@ -571,11 +597,15 @@ public class GUI implements com.company.charactersList {
         createCharacterButton.addActionListener(al);
         saveProject.addActionListener(al);
         loadProject.addActionListener(al);
-        exportProject.addActionListener(al);
+        //exportProject.addActionListener(al);
 
+        startingActiveItem.addFocusListener(fl);
         startingPassiveItem1.addFocusListener(fl);
         startingPassiveItem2.addFocusListener(fl);
         startingPassiveItem3.addFocusListener(fl);
+        startingPocket.addFocusListener(fl);
+        startingTrinket.addFocusListener(fl);
+        startingPocketItem.addFocusListener(fl);
         moveSpeed.addFocusListener(fl);
         damage.addFocusListener(fl);
         shotSpeed.addFocusListener(fl);
@@ -584,5 +614,15 @@ public class GUI implements com.company.charactersList {
         coins.addFocusListener(fl);
         bombs.addFocusListener(fl);
         key.addFocusListener(fl);
+    }
+    public boolean okHealth(){
+        int charMAXHP = newCharacter.HP_LIMIT - newCharacter.brokenHeartCounter;
+        int charHP = newCharacter.redHeartCounter+newCharacter.soulHeartCounter+newCharacter.blackHeartCounter+newCharacter.boneHeartCounter;
+        if(charHP > charMAXHP || charHP == 0){
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 }
