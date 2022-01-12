@@ -1,5 +1,6 @@
 package com.company;
 
+import javax.swing.*;
 import java.io.*;
 
 public class ReadWriteExportProject extends GUI {
@@ -52,39 +53,45 @@ public class ReadWriteExportProject extends GUI {
         }
         //send values to aplication
         // FIXME naprawić NullPointException while loading project
-        characterName.setText(loadedParameters[0]);
-        if(loadedParameters[1].equalsIgnoreCase("normal")){
-            category1.setSelected(true);
+        try {
+            characterName.setText(loadedParameters[0]);
+            if(loadedParameters[1].equalsIgnoreCase("normal")){
+                category1.setSelected(true);
+            }
+            else if(loadedParameters[1].equalsIgnoreCase("tainted")) {
+                category2.setSelected(true);
+            }
+            else {
+                category3.setSelected(true);
+            }
+            redHearts.setText(loadedParameters[2]);
+            soulHearts.setText(loadedParameters[3]);
+            blackHearts.setText(loadedParameters[4]);
+            boneHearts.setText(loadedParameters[5]);
+            brokenHearts.setText(loadedParameters[6]);
+            moveSpeed.setText(loadedParameters[7]);
+            damage.setText(loadedParameters[8]);
+            tears.setText(loadedParameters[9]);
+            shotSpeed.setText(loadedParameters[10]);
+            range.setText(loadedParameters[11]);
+            luck.setText(loadedParameters[12]);
+            coins.setText(loadedParameters[13]);
+            bombs.setText(loadedParameters[14]);
+            key.setText(loadedParameters[15]);
+            startingActiveItem.setSelectedItem(loadedParameters[16]);
+            startingPassiveItem1.setSelectedItem(loadedParameters[17]);
+            startingPassiveItem2.setSelectedItem(loadedParameters[18]);
+            startingPassiveItem3.setSelectedItem(loadedParameters[19]);
+            startingPocket.setSelectedItem(loadedParameters[20]);
+            startingTrinket.setSelectedItem(loadedParameters[21]);
+            startingPocket.setSelectedItem(loadedParameters[22]);
+            noRedHealth.setSelected(Boolean.parseBoolean(loadedParameters[23]));
+            canHavePocketItem.setSelected(Boolean.parseBoolean(loadedParameters[24]));
         }
-        else if(loadedParameters[1].equalsIgnoreCase("tainted")) {
-            category2.setSelected(true);
+        catch (NullPointerException nExp){
+            nExp.printStackTrace();
         }
-        else {
-            category3.setSelected(true);
-        }
-        redHearts.setText(loadedParameters[2]);
-        soulHearts.setText(loadedParameters[3]);
-        blackHearts.setText(loadedParameters[4]);
-        boneHearts.setText(loadedParameters[5]);
-        brokenHearts.setText(loadedParameters[6]);
-        moveSpeed.setText(loadedParameters[7]);
-        damage.setText(loadedParameters[8]);
-        tears.setText(loadedParameters[9]);
-        shotSpeed.setText(loadedParameters[10]);
-        range.setText(loadedParameters[11]);
-        luck.setText(loadedParameters[12]);
-        coins.setText(loadedParameters[13]);
-        bombs.setText(loadedParameters[14]);
-        key.setText(loadedParameters[15]);
-        startingActiveItem.setSelectedItem(loadedParameters[16]);
-        startingPassiveItem1.setSelectedItem(loadedParameters[17]);
-        startingPassiveItem2.setSelectedItem(loadedParameters[18]);
-        startingPassiveItem3.setSelectedItem(loadedParameters[19]);
-        startingPocket.setSelectedItem(loadedParameters[20]);
-        startingTrinket.setSelectedItem(loadedParameters[21]);
-        startingPocket.setSelectedItem(loadedParameters[22]);
-        noRedHealth.setSelected(Boolean.parseBoolean(loadedParameters[23]));
-        canHavePocketItem.setSelected(Boolean.parseBoolean(loadedParameters[24]));
+
     }
     public void exportCharacterFile(){
         //TODO Write body of exportCharacterFile which will export data from app to .xml file

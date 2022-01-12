@@ -2,7 +2,7 @@ package com.company;
 
 import javax.swing.*;
 
-public class Character extends TemplateCharacter implements charactersList {
+public class Character extends TemplateCharacter implements isaacEntities {
     public Character(){
         name = "Isaac";
         category = "normal";
@@ -22,7 +22,7 @@ public class Character extends TemplateCharacter implements charactersList {
         keys = 0;
         canHaveRedHealth = true;
         canHavePocketItem = false;
-        charactersList.add(this);
+        isaacEntities.add(this);
     }
 
 
@@ -36,7 +36,6 @@ public class Character extends TemplateCharacter implements charactersList {
         else {
             charInfo += "\nCan have red health: No";
         }
-        //Can have red health: "+canHaveRedHealth+"\nCan have Pocket Item: "+canHavePocketItem;
         if(canHavePocketItem){
             charInfo += "\nCan have pocket item: Yes\nPocket item: "+this.pocketItem;
         }
@@ -44,5 +43,10 @@ public class Character extends TemplateCharacter implements charactersList {
             charInfo += "\nCan have pocket item: No";
         }
         return charInfo;
+    }
+    public void showEntities(){
+        for(int i=0;i<isaacEntities.size();i++){
+            JOptionPane.showMessageDialog(null,"Postać nr: "+i+"\r\n"+ isaacEntities.get(i).toString());
+        }
     }
 }

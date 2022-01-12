@@ -1,6 +1,6 @@
 package com.company;
 
-public class TemplateCharacter {
+public abstract class TemplateCharacter {
     public final int HP_LIMIT = 12;
     public String name;
     public String category;
