@@ -1,5 +1,5 @@
-# ProjektPO - Character Creator for The Binding of Isaac: Repentance
-Final project for OOP course in Gdynia Maritime University &amp; character creator for The Binding of Isaac: Repentance
+# ProjektPO
+Final project for OOP course in Gdynia Maritime University
 
 To run this project, you have to download:
 - JDK 17 available [here](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
