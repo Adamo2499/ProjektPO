@@ -39,12 +39,15 @@ public class GUI {
     JLabel boneHeartIcon = new JLabel(new ImageIcon("src/icons/hearts/HUD_heart_bone_empty.png"));
     JLabel rottenHeartIcon = new JLabel(new ImageIcon("src/icons/hearts/HUD_heart_rotten.png"));
     JLabel brokenHeartIcon = new JLabel(new ImageIcon("src/icons/hearts/HUD_Broken_Heart.png"));
-    TextField redHearts = new TextField("3");
-    TextField soulHearts = new TextField("0");
-    TextField blackHearts = new TextField("0");
-    TextField boneHearts = new TextField("0");
-    TextField rottenHearts = new TextField("0");
-    TextField brokenHearts = new TextField("0");
+    JSpinner redHearts = new JSpinner();
+    JSpinner soulHearts = new JSpinner();
+    JSpinner blackHearts = new JSpinner();
+    JSpinner boneHearts = new JSpinner();
+    JSpinner rottenHearts = new JSpinner();
+    JSpinner brokenHearts = new JSpinner();
+    //JSpinner speed = new JSpinner();
+
+
     // items
     JLabel startingActiveItemLabel = new JLabel("Starting active item: ");
     JComboBox startingActiveItem = new JComboBox();
@@ -57,11 +60,11 @@ public class GUI {
     //trinkets and pickups
     JLabel startingPickups = new JLabel("Startowe pickupy:");
     JLabel coinIcon = new JLabel(new ImageIcon("src/icons/pickups/Penny.png"));
-    TextField coins = new TextField("0");
+    JSpinner coins = new JSpinner();
     JLabel bombIcon = new JLabel(new ImageIcon("src/icons/pickups/Bomb.png"));
-    TextField bombs = new TextField("0");
+    JSpinner bombs = new JSpinner();
     JLabel keyIcon = new JLabel(new ImageIcon("src/icons/pickups/Key.png"));
-    TextField key = new TextField("0");
+    JSpinner key = new JSpinner();
     //trinket
     JLabel trinketLabel = new JLabel("Trinket:");
     JComboBox startingTrinket = new JComboBox();
@@ -77,17 +80,17 @@ public class GUI {
     //stats
     JLabel startingStatsLabel = new JLabel("Początkowe statystyki");
     JLabel damageIcon = new JLabel(new ImageIcon("src/icons/stats/damage.png"));
-    TextField damage = new TextField("3.50");
+    JSpinner damage = new JSpinner();
     JLabel luckIcon = new JLabel(new ImageIcon("src/icons/stats/luck.png"));
-    TextField luck = new TextField("0.00");
+    JSpinner luck = new JSpinner();
     JLabel rangeIcon = new JLabel(new ImageIcon("src/icons/stats/range.png"));
-    TextField range = new TextField("6.50");
+    JSpinner range = new JSpinner();
     JLabel shotSpeedIcon = new JLabel(new ImageIcon("src/icons/stats/shot_speed.png"));
-    TextField shotSpeed = new TextField("1.00");
+    JSpinner shotSpeed = new JSpinner();
     JLabel speedIcon = new JLabel(new ImageIcon("src/icons/stats/speed.png"));
-    TextField moveSpeed = new TextField("1.00");
+    JSpinner moveSpeed = new JSpinner();
     JLabel tearsIcon = new JLabel(new ImageIcon("src/icons/stats/tears.png"));
-    TextField tears = new TextField("2.73");
+    JSpinner tears = new JSpinner();
     //interfaces
     JLabel specialAbilities = new JLabel("Special abilities:");
     JCheckBox noRedHealth = new JCheckBox("Can't have red health");
@@ -99,6 +102,25 @@ public class GUI {
     JComboBox startingPocketItem = new JComboBox();
     JButton randomPocketItem = new JButton("Random");
     static Random rng = new Random();
+
+    // models for JSpinner
+    SpinnerNumberModel redHeartPossibleValues = new SpinnerNumberModel(3,0,12,1);
+    SpinnerNumberModel soulHeartPossibleValues = new SpinnerNumberModel(0,0,12,1);
+    SpinnerNumberModel blackHeartPossibleValues = new SpinnerNumberModel(0,0,12,1);
+    SpinnerNumberModel boneHeartPossibleValues = new SpinnerNumberModel(0,0,12,1);
+    SpinnerNumberModel rottemHeartPossibleValues = new SpinnerNumberModel(0,0,12,1);
+    SpinnerNumberModel brokenHeartPossibleValues = new SpinnerNumberModel(0,0,12,1);
+
+    SpinnerNumberModel speedPossibleValues = new SpinnerNumberModel(1.00,0.60,2.00,0.10);
+    SpinnerNumberModel tearsPossibleValues = new SpinnerNumberModel(2.73,0.50,5.00,0.01);
+    SpinnerNumberModel shotSpeedPossibleValues = new SpinnerNumberModel(1.00,0.60,2.00,0.10);
+    SpinnerNumberModel damagePossibleValues = new SpinnerNumberModel(3.50,0.5,Double.MAX_VALUE,0.1);
+    SpinnerNumberModel rangePossibleValues = new SpinnerNumberModel(6.5,3.0,Double.MAX_VALUE,0.1);
+    SpinnerNumberModel luckPossibleValues = new SpinnerNumberModel(0.00,-3.0,Double.MAX_VALUE,1);
+
+    SpinnerNumberModel coinPossibleValues = new SpinnerNumberModel(0,0,99,1);
+    SpinnerNumberModel bombsPossibleValues = new SpinnerNumberModel(0,0,99,1);
+    SpinnerNumberModel keysPossibleValues = new SpinnerNumberModel(0,0,99,1);
 
 
     public void createGUI() {
@@ -277,7 +299,24 @@ public class GUI {
         options.add(file);
         file.add(saveProject);
         file.add(loadProject);
-        //file.add(exportProject);
+
+        // add models to JSpinner
+        redHearts.setModel(redHeartPossibleValues);
+        soulHearts.setModel(soulHeartPossibleValues);
+        blackHearts.setModel(blackHeartPossibleValues);
+        boneHearts.setModel(boneHeartPossibleValues);
+        rottenHearts.setModel(rottemHeartPossibleValues);
+        brokenHearts.setModel(brokenHeartPossibleValues);
+        moveSpeed.setModel(speedPossibleValues);
+        tears.setModel(tearsPossibleValues);
+        damage.setModel(damagePossibleValues);
+        range.setModel(rangePossibleValues);
+        shotSpeed.setModel(shotSpeedPossibleValues);
+        luck.setModel(luckPossibleValues);
+
+        coins.setModel(coinPossibleValues);
+        bombs.setModel(bombsPossibleValues);
+        key.setModel(keysPossibleValues);
 
         //hide pocket item elements
         pocketItemLabel.setVisible(false);
@@ -333,13 +372,13 @@ public class GUI {
                 }
                 if (e.getSource() == noRedHealth) {
                     if (noRedHealth.isSelected()) {
-                        redHearts.setText("0");
-                        redHearts.setEditable(false);
-                        rottenHearts.setText("0");
-                        rottenHearts.setEditable(false);
+                        redHearts.setValue("0");
+                        redHearts.setEnabled(false);
+                        rottenHearts.setValue("0");
+                        rottenHearts.setEnabled(false);
                     } else {
-                        redHearts.setEditable(true);
-                        rottenHearts.setEditable(true);
+                        redHearts.setEnabled(true);
+                        rottenHearts.setEnabled(true);
                     }
                     newCharacter.canHaveRedHealth = noRedHealth.isSelected();
                 }
@@ -470,10 +509,10 @@ public class GUI {
                     }
                 }
                 if (e.getSource() == coins) {
-                    if(coins.getText().equals(null)){
+                    if(coins.getValue().equals(null)){
                         newCharacter.coins = 0;
                     }
-                    int coinCounter = Integer.parseInt(coins.getText());
+                    int coinCounter = Integer.parseInt(coins.getValue().toString());
                     if (coinCounter < 0 || coinCounter>999) {
                         JOptionPane.showMessageDialog(null, "Nieprawidłowa ilość coinów");
                         statsOK = false;
@@ -490,10 +529,10 @@ public class GUI {
                     bombs.requestFocus();
                 }
                 if (e.getSource() == bombs) {
-                    if(bombs.getText().equals(null)){
+                    if(bombs.getValue().equals(null)){
                         newCharacter.bombs = 0;
                     }
-                    int bombCounter = Integer.parseInt(bombs.getText());
+                    int bombCounter = Integer.parseInt(bombs.getValue().toString());
                     if (bombCounter < 0 || bombCounter > 99) {
                         statsOK = false;
                         JOptionPane.showMessageDialog(null, "Nieprawidłowa ilość bomb");
@@ -504,10 +543,10 @@ public class GUI {
                     key.requestFocus();
                 }
                 if (e.getSource() == key) {
-                    if(key.getText().equals(null)){
+                    if(key.getValue().equals(null)){
                         newCharacter.keys = 0;
                     }
-                    int keysCounter = Integer.parseInt(key.getText());
+                    int keysCounter = Integer.parseInt(key.getValue().toString());
                     if (keysCounter < 0 || keysCounter > 99) {
                         statsOK=false;
                         JOptionPane.showMessageDialog(null, "Nieprawidłowa ilość kluczy");
@@ -518,7 +557,7 @@ public class GUI {
                     moveSpeed.requestFocus();
                 }
                 if (e.getSource() == moveSpeed) {
-                    double speedValue = Double.parseDouble(moveSpeed.getText());
+                    double speedValue = Double.parseDouble(moveSpeed.getValue().toString());
                     if (speedValue < 0.10 || speedValue > 2.00) {
                         JOptionPane.showMessageDialog(null, "Speed have to be between 0.1-2.0");
                         statsOK = false;
@@ -530,7 +569,7 @@ public class GUI {
 
                 }
                 if (e.getSource() == tears) {
-                    double tearsValue = Double.parseDouble(tears.getText());
+                    double tearsValue = Double.parseDouble(tears.getValue().toString());
                     if (tearsValue < 0.5 || tearsValue > 5.0) {
                         JOptionPane.showMessageDialog(null, "Tears have to be between 0.5-5.0!");
                         statsOK = false;
@@ -541,7 +580,7 @@ public class GUI {
                     }
                 }
                 if (e.getSource() == damage) {
-                    double damageValue = Double.parseDouble(damage.getText());
+                    double damageValue = Double.parseDouble(damage.getValue().toString());
                     if (damageValue < 0.5) {
                         JOptionPane.showMessageDialog(null, "Damage can't be lower then 0.5!");
                         statsOK = false;
@@ -552,7 +591,7 @@ public class GUI {
                     }
                 }
                 if (e.getSource() == range) {
-                    double rangeValue = Double.parseDouble(range.getText());
+                    double rangeValue = Double.parseDouble(range.getValue().toString());
                     if (rangeValue < 1.0) {
                         JOptionPane.showMessageDialog(null, "Range musi być większy niż 1.0");
                         statsOK = false;
@@ -563,7 +602,7 @@ public class GUI {
                     }
                 }
                 if (e.getSource() == shotSpeed) {
-                    double shotSpeedValue = Double.parseDouble(shotSpeed.getText());
+                    double shotSpeedValue = Double.parseDouble(shotSpeed.getValue().toString());
                     if (shotSpeedValue < 0.60 || shotSpeedValue > 2.00) {
                         JOptionPane.showMessageDialog(null, "Speed have to be between 0.6-2.0");
                         statsOK = false;
@@ -574,7 +613,7 @@ public class GUI {
                     }
                 }
                 if (e.getSource() == luck) {
-                    double luckValue = Double.parseDouble(luck.getText());
+                    double luckValue = Double.parseDouble(luck.getValue().toString());
                     if (luckValue < -3.0) {
                         JOptionPane.showMessageDialog(null, "Luck musi być większy niż -3.0");
                         statsOK = false;
@@ -602,6 +641,7 @@ public class GUI {
         createCharacterButton.addActionListener(al);
         saveProject.addActionListener(al);
         loadProject.addActionListener(al);
+        //startingPassiveItem1.addActionListener(al);
         //exportProject.addActionListener(al);
 
         startingActiveItem.addFocusListener(fl);

@@ -62,20 +62,21 @@ public class ReadWriteExportProject extends GUI {
             else {
                 category3.setSelected(true);
             }
-            redHearts.setText(loadedParameters[2]);
-            soulHearts.setText(loadedParameters[3]);
-            blackHearts.setText(loadedParameters[4]);
-            boneHearts.setText(loadedParameters[5]);
-            brokenHearts.setText(loadedParameters[6]);
-            moveSpeed.setText(loadedParameters[7]);
-            damage.setText(loadedParameters[8]);
-            tears.setText(loadedParameters[9]);
-            shotSpeed.setText(loadedParameters[10]);
-            range.setText(loadedParameters[11]);
-            luck.setText(loadedParameters[12]);
-            coins.setText(loadedParameters[13]);
-            bombs.setText(loadedParameters[14]);
-            key.setText(loadedParameters[15]);
+            redHearts.setValue(loadedParameters[2]);
+            soulHearts.setValue(loadedParameters[3]);
+            blackHearts.setValue(loadedParameters[4]);
+            boneHearts.setValue(loadedParameters[5]);
+            brokenHearts.setValue(loadedParameters[6]);
+            moveSpeed.setValue(loadedParameters[7]);
+            //damage.setValue(loadedParameters[8]);
+            damage.setValue(loadedParameters[8]);
+            tears.setValue(loadedParameters[9]);
+            shotSpeed.setValue(loadedParameters[10]);
+            range.setValue(loadedParameters[11]);
+            luck.setValue(loadedParameters[12]);
+            coins.setValue(loadedParameters[13]);
+            bombs.setValue(loadedParameters[14]);
+            key.setValue(loadedParameters[15]);
             startingActiveItem.setSelectedItem(loadedParameters[16]);
             startingPassiveItem1.setSelectedItem(loadedParameters[17]);
             startingPassiveItem2.setSelectedItem(loadedParameters[18]);
